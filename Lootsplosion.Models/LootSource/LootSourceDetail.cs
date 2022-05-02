@@ -8,26 +8,24 @@ using static Lootsplosion.Common.EnumCollection;
 
 namespace Lootsplosion.Models.LootSource
 {
-    public class LootSourceListItem
+    public class LootSourceDetail
     {
         public int LootSourceId { get; set; }
         [Display(Name = "Loot Source Name")]
         public string SourceName { get; set; }
-        [Display(Name = "Empty")]
+        [Display(Name = "Description")]
+        public string SourceDescription { get; set; }
+        [Display(Name = "No Loot %")]
         public double NoLootWeight { get; set; }
-        [Display(Name = "C")]
+        [Display(Name = "Common %")]
         public double CommonWeight { get; set; }
-        [Required]
-        [Display(Name = "U")]
+        [Display(Name = "Uncommon %")]
         public double UncommonWeight { get; set; }
-        [Required]
-        [Display(Name = "R")]
+        [Display(Name = "Rare %")]
         public double RareWeight { get; set; }
-        [Required]
-        [Display(Name = "E")]
+        [Display(Name = "Epic %")]
         public double EpicWeight { get; set; }
-        [Required]
-        [Display(Name = "L")]
+        [Display(Name = "Legendary %")]
         public double LegendaryWeight { get; set; }
         [Display(Name = "Type")]
         public LootSourceType SourceType { get; set; }
