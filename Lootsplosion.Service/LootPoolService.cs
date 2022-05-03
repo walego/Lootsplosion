@@ -32,6 +32,20 @@ namespace Lootsplosion.Service
                 return ctx.SaveChanges() == 1;
             }
         }
+        public IEnumerable<LootPoolListItem> GetAllLootPools()
+        {
+            using(var ctx = new ApplicationDbContext())
+            {
+                var query = ctx.LootPools.Where(p => p.OwnerId == _userId).Select(e => new LootPoolListItem
+                {
+                    LootPoolId = e.LootPoolId,
+                    LootSourceId = e.LootSourceId,
+                    LootId = e.LootId,
+                    SecretRarity = e.SecretRarity
+                });
+                return query.ToArray();
+            }
+        }
         public bool UpdateLootPool(LootPoolEdit model)
         {
             using(var ctx = new ApplicationDbContext())
