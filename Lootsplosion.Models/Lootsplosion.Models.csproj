@@ -68,6 +68,8 @@
     <Compile Include="LootPool\LootPoolCreate.cs" />
     <Compile Include="LootPool\LootPoolEdit.cs" />
     <Compile Include="LootPool\LootPoolListItem.cs" />
+    <Compile Include="LootPull\PulledLootListItem.cs" />
+    <Compile Include="LootSource\LootSourceAddLoot.cs" />
     <Compile Include="LootSource\LootSourceCreate.cs" />
     <Compile Include="LootSource\LootSourceDetail.cs" />
     <Compile Include="LootSource\LootSourceEdit.cs" />
