@@ -23,6 +23,7 @@ namespace Lootsplosion.Service
             {
                 OwnerId = _userId,
                 LootName = model.LootName,
+                LootDescription = model.LootDescription,
                 Rarity = model.Rarity,
                 WorldDrop = model.WorldDrop,
                 // CHANGE THIS LATER
@@ -51,15 +52,16 @@ namespace Lootsplosion.Service
                 return query;
             }
         }
-        public LootListItem GetLootById(int id)
+        public LootDetail GetLootById(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx.Loot.Single(l => l.LootId == id && l.OwnerId == _userId);
-                return new LootListItem
+                return new LootDetail
                 {
                     LootId = entity.LootId,
                     LootName = entity.LootName,
+                    LootDescription = entity.LootDescription,
                     Rarity = entity.Rarity,
                     WorldDrop = entity.WorldDrop,
                     PoolsIn = ctx.LootPools.Where(p => p.LootId == entity.LootId).Count()
@@ -72,6 +74,7 @@ namespace Lootsplosion.Service
             {
                 var entity = ctx.Loot.Single(l => l.LootId == model.LootId && l.OwnerId == _userId);
                 entity.LootName = model.LootName;
+                entity.LootDescription = model.LootDescription;
                 entity.Rarity = model.Rarity;
                 entity.WorldDrop = model.WorldDrop;
 

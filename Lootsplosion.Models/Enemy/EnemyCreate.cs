@@ -37,5 +37,6 @@ namespace Lootsplosion.Models.Enemy
         [Display(Name = "World Drop Pulls")]
         public int WorldPulls { get; set; }
         public string Skills { get; set; }
+        public bool AddNewLootSource { get; set; }
     }
 }

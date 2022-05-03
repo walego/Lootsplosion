@@ -16,6 +16,7 @@ namespace Loostplosion.Data
         public Guid OwnerId { get; set; }
         [Required]
         public string LootName { get; set; }
+        public string LootDescription { get; set; }
         [Required]
         public Rarity Rarity { get; set; }
         public bool WorldDrop { get; set; }

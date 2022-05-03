@@ -46,6 +46,7 @@ namespace Lootsplosion.Service
                     OwnerId = _userId,
                     ItemId = ctx.Items.Last().ItemId,
                     LootName = model.ItemName,
+                    LootDescription = model.ItemDescription,
                     Rarity = model.Rarity,
                     WorldDrop = model.WorldDrop,
                     // CHANGE THIS LATER
@@ -112,6 +113,7 @@ namespace Lootsplosion.Service
 
                 var oldLoot = ctx.Loot.Single(l => l.ItemId == model.ItemId && l.OwnerId == _userId);
                 oldLoot.LootName = model.ItemName;
+                oldLoot.LootDescription = model.ItemDescription;
                 oldLoot.Rarity = model.Rarity;
                 oldLoot.WorldDrop = model.WorldDrop;
 

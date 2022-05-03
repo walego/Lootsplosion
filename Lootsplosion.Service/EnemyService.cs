@@ -43,7 +43,9 @@ namespace Lootsplosion.Service
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Enemies.Add(entity);
-                ctx.SaveChanges();
+                if (!model.AddNewLootSource)
+                    return ctx.SaveChanges() == 1;
+                int saved = ctx.SaveChanges();
                 var newSource = new LootSource()
                 {
                     OwnerId = _userId,
@@ -56,13 +58,14 @@ namespace Lootsplosion.Service
                     RareWeight = 10,
                     EpicWeight = 5,
                     LegendaryWeight = 1,
-                    Pulls = 1,
+                    Pulls = 0,
                     // CHANGE THIS LATER
                     MasterList = true
                     // CHANGE THIS LATER
                 };
                 ctx.LootSources.Add(newSource);
-                return ctx.SaveChanges() == 1;
+                saved += ctx.SaveChanges();
+                return saved == 2;
             }
         }
         public IEnumerable<EnemyListItem> GetEnemies()

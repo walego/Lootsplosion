@@ -12,6 +12,7 @@ namespace Lootsplosion.Models.Loot
     {
         [Required]
         public string LootName { get; set; }
+        public string LootDescription { get; set; }
         [Required]
         public Rarity Rarity { get; set; }
         public bool WorldDrop { get; set; }
