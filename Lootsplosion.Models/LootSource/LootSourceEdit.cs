@@ -17,19 +17,22 @@ namespace Lootsplosion.Models.LootSource
         [Display(Name = "Description")]
         public string SourceDescription { get; set; }
         [Required]
-        [Display(Name = "Common %")]
+        [Display(Name = "Chance of No Loot")]
+        public double NoLootWeight { get; set; }
+        [Required]
+        [Display(Name = "Common Chance")]
         public double CommonWeight { get; set; }
         [Required]
-        [Display(Name = "Uncommon %")]
+        [Display(Name = "Uncommon Chance")]
         public double UncommonWeight { get; set; }
         [Required]
-        [Display(Name = "Rare %")]
+        [Display(Name = "Rare Chance")]
         public double RareWeight { get; set; }
         [Required]
-        [Display(Name = "Epic %")]
+        [Display(Name = "Epic Chance")]
         public double EpicWeight { get; set; }
         [Required]
-        [Display(Name = "Legendary %")]
+        [Display(Name = "Legendary Chance")]
         public double LegendaryWeight { get; set; }
         [Required]
         [Display(Name = "Type")]

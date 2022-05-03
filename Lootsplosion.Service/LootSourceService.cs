@@ -17,6 +17,31 @@ namespace Lootsplosion.Service
         {
             _userId = userId;
         }
+        public bool CreateSource(LootSourceCreate model)
+        {
+            var entity = new LootSource()
+            {
+                OwnerId = _userId,
+                SourceName = model.SourceName,
+                SourceDescription = model.SourceDescription,
+                SourceType = model.SourceType,
+                NoLootWeight = model.NoLootWeight,
+                CommonWeight = model.CommonWeight,
+                UncommonWeight = model.UncommonWeight,
+                RareWeight = model.RareWeight,
+                EpicWeight = model.EpicWeight,
+                LegendaryWeight = model.LegendaryWeight,
+                Pulls = model.Pulls,
+                // CHANGE THIS LATER
+                MasterList = true
+                // CHANGE THIS LATER
+            };
+            using (var ctx = new ApplicationDbContext())
+            {
+                ctx.LootSources.Add(entity);
+                return ctx.SaveChanges() == 1;
+            }
+        }
         public IEnumerable<LootSourceListItem> GetSources()
         {
             using (var ctx = new ApplicationDbContext())
@@ -39,7 +64,7 @@ namespace Lootsplosion.Service
         }
         public LootSourceDetail GetSourceById(int id)
         {
-            using(var ctx = new ApplicationDbContext())
+            using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx.LootSources.Single(s => s.LootSourceId == id && s.OwnerId == _userId);
                 return new LootSourceDetail
@@ -74,6 +99,39 @@ namespace Lootsplosion.Service
                 ctx.LootSources.Remove(entity);
                 return ctx.SaveChanges() == 1;
             }
+        }
+        public List<double> RarityWeightCalculationsForRandom(int id)
+        {
+            var model = GetSourceById(id);
+            bool percentToInt = true;
+            double n = model.NoLootWeight;
+            double c = model.CommonWeight;
+            double u = model.UncommonWeight;
+            double r = model.RareWeight;
+            double e = model.EpicWeight;
+            double l = model.LegendaryWeight;
+            while (percentToInt)
+            {
+                //Using modulo to see if any weights have decimals
+                if (n % 1 != 0 || c % 1 != 0 || u % 1 != 0 || r % 1 != 0 || e % 1 != 0 || l % 1 != 0)
+                {
+                    //Multiply all by 10 and loop again
+                    n *= 10;
+                    c *= 10;
+                    u *= 10;
+                    r *= 10;
+                    e *= 10;
+                    l *= 10;
+                }
+                //Once if statement passes calculate multiplier to calculate percent chance and end loop
+                else
+                {
+                    percentToInt = false;
+                }
+            }
+            double weightMultiplier = (n + c + u + r + e + l) / 100;
+            List<double> rarityWithMultiplier = new List<double> { n, c, u, r, e, l, weightMultiplier };
+            return rarityWithMultiplier;
         }
     }
 }

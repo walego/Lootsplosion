@@ -18,17 +18,17 @@ namespace Loostplosion.Data
         public string SourceName { get; set; }
         public string SourceDescription { get; set; }
         [Required]
-        public int NoLootWeight { get; set; }
+        public double NoLootWeight { get; set; }
         [Required]
-        public int CommonWeight { get; set; }
+        public double CommonWeight { get; set; }
         [Required]
-        public int UncommonWeight { get; set; }
+        public double UncommonWeight { get; set; }
         [Required]
-        public int RareWeight { get; set; }
+        public double RareWeight { get; set; }
         [Required]
-        public int EpicWeight { get; set; }
+        public double EpicWeight { get; set; }
         [Required]
-        public int LegendaryWeight { get; set; }
+        public double LegendaryWeight { get; set; }
         [Required]
         public LootSourceType SourceType { get; set; }
         [ForeignKey("Enemy")]
