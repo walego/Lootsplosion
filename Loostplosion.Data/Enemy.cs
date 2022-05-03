@@ -34,7 +34,7 @@ namespace Loostplosion.Data
         [Required]
         public int WorldPulls { get; set; }
         public List<LootSource> LootSources { get; set; }
-        public List<string> Skills { get; set; }
+        public string Skills { get; set; }
         public bool MasterList { get; set; }
     }
 }

@@ -27,6 +27,6 @@ namespace Lootsplosion.Models.Enemy
         public int CritChance { get; set; }
         [Display(Name ="World Drop Pulls")]
         public int WorldPulls { get; set; }
-        public List<string> Skills { get; set; }
+        public string Skills { get; set; }
     }
 }
