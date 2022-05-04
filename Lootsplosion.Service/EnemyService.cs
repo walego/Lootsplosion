@@ -148,13 +148,5 @@ namespace Lootsplosion.Service
                 return ctx.SaveChanges() == 1;
             }
         }
-        /*
-        public bool IsSoup(bool milk)
-        {
-            bool milkPouredFirst = milk;
-            bool isSoup = milkPouredFirst ? true : false;
-            return isSoup;
-        }
-        */
     }
 }
