@@ -1,0 +1,114 @@
+﻿@model Lootsplosion.Models.Item.ItemDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ItemDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ItemId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ItemName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ItemDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rarity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rarity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ItemType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Strength)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Strength)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Intelligence)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Intelligence)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vitality)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vitality)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mobility)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mobility)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CritChance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CritChance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OtherEffects)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OtherEffects)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WorldDrop)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorldDrop)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {  id = Model.ItemId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

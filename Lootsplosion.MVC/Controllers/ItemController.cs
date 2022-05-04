@@ -1,9 +1,11 @@
-﻿using Lootsplosion.Models.Item;
+﻿using Lootsplosion.Common;
+using Lootsplosion.Models.Item;
 using Lootsplosion.Service;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using static Lootsplosion.Common.EnumCollection;
@@ -13,6 +15,7 @@ namespace Lootsplosion.MVC.Controllers
     [Authorize]
     public class ItemController : Controller
     {
+        private readonly EnumCollection _enum = new EnumCollection();
         private ItemService CreateItemService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
@@ -28,10 +31,8 @@ namespace Lootsplosion.MVC.Controllers
         }
         public ActionResult Create()
         {
-            var rarities = from Rarity r in Enum.GetValues(typeof(Rarity)) select new { Id = (int)r, Name = r.ToString() };
-            var types = from ItemType t in Enum.GetValues(typeof(ItemType)) select new { Id = (int)t, Name = t.ToString() };
-            ViewBag.Rarity = new SelectList(rarities, "Id", "Name", "Rarity");
-            ViewBag.Type = new SelectList(types, "Id", "Name", "Type");
+            ViewBag.Rarity = _enum.GetRarities();
+            ViewBag.Type = _enum.GetItemTypes();
             return View();
         }
         [HttpPost]
@@ -43,12 +44,42 @@ namespace Lootsplosion.MVC.Controllers
                 return View(model);
             }
             var service = CreateItemService();
-            if(service.CreateItem(model))
+            if (service.CreateItem(model))
             {
                 TempData["SaveResult"] = "Item successfully created.";
                 return RedirectToAction("Index");
             }
             ModelState.AddModelError("", "Item unable to be created");
+            return View(model);
+        }
+        public ActionResult Details(int id)
+        {
+            var service = CreateItemService();
+            var model = service.GetItemById(id);
+
+            return View(model);
+        }
+        public ActionResult Edit(int id)
+        {
+            var service = CreateItemService();
+            var detail = service.GetItemById(id);
+            ViewBag.Rarity = _enum.GetRarities();
+            ViewBag.Type = _enum.GetItemTypes();
+            var model = new ItemEdit
+            {
+                ItemId = detail.ItemId,
+                ItemName = detail.ItemName,
+                ItemDescription = detail.ItemDescription,
+                Rarity = detail.Rarity,
+                ItemType = detail.ItemType,
+                Strength = detail.Strength,
+                Intelligence = detail.Intelligence,
+                Vitality = detail.Vitality,
+                Mobility = detail.Mobility,
+                CritChance = detail.CritChance,
+                OtherEffects = detail.OtherEffects,
+                WorldDrop = detail.WorldDrop
+            };
             return View(model);
         }
     }
