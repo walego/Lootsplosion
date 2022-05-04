@@ -240,14 +240,16 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Item\Index.cshtml" />
+    <Content Include="Views\Item\Create.cshtml" />
+    <Content Include="Views\Loot\Index.cshtml" />
+    <Content Include="Views\Loot\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Enemy\" />
-    <Folder Include="Views\Item\" />
     <Folder Include="Views\LootPool\" />
     <Folder Include="Views\LootSource\" />
-    <Folder Include="Views\Loot\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -266,6 +268,10 @@
     <ProjectReference Include="..\Loostplosion.Data\Loostplosion.Data.csproj">
       <Project>{f2a1911e-2e36-40ea-9a74-c8393be3313e}</Project>
       <Name>Loostplosion.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lootsplosion.Common\Lootsplosion.Common.csproj">
+      <Project>{1BE52E3C-33D0-4C93-AC23-5282CA6C086D}</Project>
+      <Name>Lootsplosion.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Lootsplosion.Models\Lootsplosion.Models.csproj">
       <Project>{48c12ac2-a74b-4831-a7d1-f77247fc2764}</Project>

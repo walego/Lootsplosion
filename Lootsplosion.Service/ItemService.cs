@@ -44,7 +44,7 @@ namespace Lootsplosion.Service
                 var newLoot = new Loot()
                 {
                     OwnerId = _userId,
-                    ItemId = ctx.Items.Last().ItemId,
+                    ItemId = entity.ItemId,
                     LootName = model.ItemName,
                     LootDescription = model.ItemDescription,
                     Rarity = model.Rarity,

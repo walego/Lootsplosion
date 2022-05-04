@@ -23,7 +23,7 @@ namespace Lootsplosion.Models.Item
         public int Intelligence { get; set; }
         public int Vitality { get; set; }
         public double Mobility { get; set; }
-        [Display(Name = "Crit")]
+        [Display(Name = "Crit %")]
         public int CritChance { get; set; }
         [Display(Name = "Other Effects")]
         public string OtherEffects { get; set; }

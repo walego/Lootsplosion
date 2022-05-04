@@ -49,7 +49,7 @@ namespace Lootsplosion.Service
                 var newSource = new LootSource()
                 {
                     OwnerId = _userId,
-                    EnemyId = ctx.Enemies.Last().EnemyId,
+                    EnemyId = entity.EnemyId,
                     SourceName = $"{model.EnemyName} Main",
                     SourceType = LootSourceType.Enemy,
                     NoLootWeight = 25,
@@ -107,7 +107,7 @@ namespace Lootsplosion.Service
                 };
             }
         }
-        public bool UpdateItem(EnemyEdit model)
+        public bool UpdateEnemy(EnemyEdit model)
         {
             using (var ctx = new ApplicationDbContext())
             {
