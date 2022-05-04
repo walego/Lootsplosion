@@ -32,7 +32,7 @@ namespace Lootsplosion.MVC.Controllers
         public ActionResult Create()
         {
             ViewBag.Rarity = _enum.GetRarities();
-            ViewBag.Type = _enum.GetItemTypes();
+            ViewBag.ItemType = _enum.GetItemTypes();
             return View();
         }
         [HttpPost]
