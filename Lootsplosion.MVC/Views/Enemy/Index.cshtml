@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Lootsplosion.Models.Enemy.EnemyListItem>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EnemyId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EnemyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsBoss)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsElite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Level)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WorldPulls)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EnemyId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EnemyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsBoss)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsElite)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Level)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WorldPulls)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {  id=item.EnemyId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.EnemyId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.EnemyId })
+        </td>
+    </tr>
+}
+
+</table>

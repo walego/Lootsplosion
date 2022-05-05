@@ -247,10 +247,14 @@
     <Content Include="Views\Item\Details.cshtml" />
     <Content Include="Views\Item\Edit.cshtml" />
     <Content Include="Views\Item\Delete.cshtml" />
+    <Content Include="Views\Enemy\Index.cshtml" />
+    <Content Include="Views\Enemy\Create.cshtml" />
+    <Content Include="Views\Enemy\Details.cshtml" />
+    <Content Include="Views\Enemy\Edit.cshtml" />
+    <Content Include="Views\Enemy\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Enemy\" />
     <Folder Include="Views\LootPool\" />
     <Folder Include="Views\LootSource\" />
   </ItemGroup>
