@@ -63,8 +63,6 @@ namespace Lootsplosion.MVC.Controllers
         {
             var service = CreateItemService();
             var detail = service.GetItemById(id);
-            ViewBag.Rarity = _enum.GetRarities();
-            ViewBag.Type = _enum.GetItemTypes();
             var model = new ItemEdit
             {
                 ItemId = detail.ItemId,
@@ -80,7 +78,49 @@ namespace Lootsplosion.MVC.Controllers
                 OtherEffects = detail.OtherEffects,
                 WorldDrop = detail.WorldDrop
             };
+            ViewBag.Rarity = _enum.GetRarities();
+            ViewBag.ItemType = _enum.GetItemTypes();
             return View(model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, ItemEdit model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            if (model.ItemId != id)
+            {
+                ModelState.AddModelError("", "Id Mismatch");
+                return View(model);
+            }
+            var service = CreateItemService();
+            if (service.UpdateItem(model))
+            {
+                TempData["Save Result"] = "Item updated";
+                return RedirectToAction("Index");
+            }
+            ModelState.AddModelError("", "Item was unable to be updated");
+            return View(model);
+        }
+        [ActionName("Delete")]
+        public ActionResult Delete(int id)
+        {
+            var service = CreateItemService();
+            var model = service.GetItemById(id);
+
+            return View(model);
+        }
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteItem(int id)
+        {
+            var service = CreateItemService();
+            service.DeleteItem(id);
+            TempData["SaveResult"] = "Item Deleted";
+            return RedirectToAction("Index");
         }
     }
 }

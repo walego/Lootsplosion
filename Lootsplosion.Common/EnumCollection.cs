@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc.Html;
 
 namespace Lootsplosion.Common
 {
@@ -15,12 +18,14 @@ namespace Lootsplosion.Common
         public SelectList GetRarities()
         {
             var rarities = from Rarity r in Enum.GetValues(typeof(Rarity)) select new { Id = (int)r, Name = r.ToString() };
-            return new SelectList(rarities, "Id", "Name", "Rarity");
+            var list = new SelectList(rarities, "Id", "Name", "Rarity");
+            return list;
         }
         public SelectList GetItemTypes()
         {
             var types = from ItemType t in Enum.GetValues(typeof(ItemType)) select new { Id = (int)t, Name = t.ToString() };
-            return new SelectList(types, "Id", "Name", "Type");
+            var list = new SelectList(types, "Id", "Name", "Type");
+            return list;
         }
     }
 }

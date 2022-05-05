@@ -84,15 +84,18 @@ namespace Lootsplosion.Service
         public bool DeleteLoot(int id)
         {
             var poolService = new LootPoolService(_userId);
-            using (var ctx = new ApplicationDbContext())
+            using (var poolCtx = new ApplicationDbContext())
             {
-                var poolList = ctx.LootPools.Where(p => p.LootId == id).ToList();
+                var poolList = poolCtx.LootPools.Where(p => p.LootId == id).ToList();
                 foreach (LootPool pool in poolList)
                 {
                     bool deleteCheck = poolService.DeleteLootPool(pool.LootPoolId);
                     if (!deleteCheck)
                         return false;
                 }
+            }
+            using (var ctx = new ApplicationDbContext())
+            {
                 var entity = ctx.Loot.Single(l => l.LootId == id && l.OwnerId == _userId);
                 ctx.Loot.Remove(entity);
                 return ctx.SaveChanges() == 1;

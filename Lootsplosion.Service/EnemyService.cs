@@ -134,15 +134,18 @@ namespace Lootsplosion.Service
         public bool DeleteEnemy(int id)
         {
             var sourceService = new LootSourceService(_userId);
-            using (var ctx = new ApplicationDbContext())
+            using (var sourceCtx = new ApplicationDbContext())
             {
-                var sourceList = ctx.LootSources.Where(l => l.EnemyId == id).ToList();
+                var sourceList = sourceCtx.LootSources.Where(l => l.EnemyId == id).ToList();
                 foreach (LootSource source in sourceList)
                 {
                     bool deleteCheck = sourceService.DeleteSource(source.LootSourceId);
                     if (!deleteCheck)
                         return false;
                 }
+            }
+            using (var ctx = new ApplicationDbContext())
+            {
                 var entity = ctx.Enemies.Single(e => e.EnemyId == id && e.OwnerId == _userId);
                 ctx.Enemies.Remove(entity);
                 return ctx.SaveChanges() == 1;

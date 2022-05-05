@@ -123,18 +123,21 @@ namespace Lootsplosion.Service
         public bool DeleteItem(int id)
         {
             var lootService = new LootService(_userId);
-            using(var ctx = new ApplicationDbContext())
+            using (var lootCtx = new ApplicationDbContext())
             {
-                var lootList = ctx.Loot.Where(l => l.ItemId == id).ToList();
+                var lootList = lootCtx.Loot.Where(l => l.ItemId == id).ToList();
                 foreach(Loot loot in lootList)
                 {
                     bool deleteCheck = lootService.DeleteLoot(loot.LootId);
                     if (!deleteCheck)
                         return false;
                 }
+            }
+            using(var ctx = new ApplicationDbContext())
+            {
                 var entity = ctx.Items.Single(i => i.ItemId == id && i.OwnerId == _userId);
                 ctx.Items.Remove(entity);
-                return ctx.SaveChanges() == 1;
+                return ctx.SaveChanges()==1;
             }
         }
     }

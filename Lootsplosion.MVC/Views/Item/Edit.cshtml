@@ -35,14 +35,14 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Rarity, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownList("Rarity", null, htmlAttributes: new { @class = "form-control" })
+            @Html.DropDownList("Rarity", ViewBag.Rarity as IEnumerable<SelectListItem>, htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Rarity, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(model => model.ItemType, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownList("Type", null, htmlAttributes: new { @class = "form-control" })
+            @Html.DropDownList("ItemType", ViewBag.ItemType as IEnumerable<SelectListItem>, htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.ItemType, "", new { @class = "text-danger" })
         </div>
     </div>

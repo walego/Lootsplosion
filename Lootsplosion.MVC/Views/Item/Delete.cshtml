@@ -1,0 +1,120 @@
+﻿@model Lootsplosion.Models.Item.ItemDetail
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ItemDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ItemId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ItemName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ItemDescription)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.Rarity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rarity)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ItemType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Strength)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Strength)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Intelligence)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Intelligence)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vitality)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vitality)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mobility)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mobility)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CritChance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CritChance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OtherEffects)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OtherEffects)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WorldDrop)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorldDrop)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
