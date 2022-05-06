@@ -51,7 +51,7 @@ namespace Lootsplosion.Service
                     OwnerId = _userId,
                     EnemyId = entity.EnemyId,
                     SourceName = $"Default for enemy {entity.EnemyId}",
-                    SourceType = LootSourceType.Enemy,
+                    SourceType = SourceType.Enemy,
                     NoLootWeight = 25,
                     CommonWeight = 35,
                     UncommonWeight = 24,
@@ -88,7 +88,9 @@ namespace Lootsplosion.Service
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Enemies.Single(e => e.EnemyId == id && e.OwnerId == _userId);
+                var entity = ctx.Enemies.SingleOrDefault(e => e.EnemyId == id && e.OwnerId == _userId);
+                if (entity == default)
+                    return new EnemyDetail { EnemyId = -1 };
                 return new EnemyDetail
                 {
                     EnemyId = entity.EnemyId,

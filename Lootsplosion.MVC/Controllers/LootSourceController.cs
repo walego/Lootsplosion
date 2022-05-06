@@ -29,7 +29,7 @@ namespace Lootsplosion.MVC.Controllers
         }
         public ActionResult Create()
         {
-            ViewBag.LootSourceType = _enum.GetLootSourceTypes();
+            ViewBag.SourceType = _enum.GetLootSourceTypes();
             return View();
         }
         [HttpPost]
@@ -40,7 +40,7 @@ namespace Lootsplosion.MVC.Controllers
             {
                 return View(model);
             }
-            if (model.SourceType == LootSourceType.World)
+            if (model.SourceType == SourceType.World)
             {
                 ModelState.AddModelError("", "World Loot Source Creation is not available to users");
                 return View(model);
@@ -58,6 +58,8 @@ namespace Lootsplosion.MVC.Controllers
         {
             var service = CreateSourceService();
             var model = service.GetSourceById(id);
+            if (model.LootSourceId == -1)
+                return HttpNotFound();
 
             return View(model);
         }
@@ -65,6 +67,8 @@ namespace Lootsplosion.MVC.Controllers
         {
             var service = CreateSourceService();
             var detail = service.GetSourceById(id);
+            if (detail.LootSourceId == -1)
+                return HttpNotFound();
             var model = new LootSourceEdit
             {
                 LootSourceId = detail.LootSourceId,
@@ -79,19 +83,24 @@ namespace Lootsplosion.MVC.Controllers
                 SourceType = detail.SourceType,
                 Pulls = detail.Pulls,
             };
-            ViewBag.LootSourceType = _enum.GetLootSourceTypes();
+            ViewBag.SourceType = _enum.GetLootSourceTypes();
             return View(model);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, LootSourceEdit model)
         {
+            ViewBag.SourceType = _enum.GetLootSourceTypes();
             if (!ModelState.IsValid)
             {
-                ViewBag.LootSourceType = _enum.GetLootSourceTypes();
                 return View(model);
             }
-            if (model.EnemyId != id)
+            if (model.SourceType == SourceType.World)
+            {
+                ModelState.AddModelError("", "World Loot Source Creation is not available to users");
+                return View(model);
+            }
+            if (model.LootSourceId != id)
             {
                 ModelState.AddModelError("", "Id Mismatch");
                 return View(model);
@@ -110,6 +119,8 @@ namespace Lootsplosion.MVC.Controllers
         {
             var service = CreateSourceService();
             var model = service.GetSourceById(id);
+            if (model.LootSourceId == -1)
+                return HttpNotFound();
 
             return View(model);
         }

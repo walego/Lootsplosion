@@ -66,7 +66,9 @@ namespace Lootsplosion.Service
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.LootSources.Single(s => s.LootSourceId == id && s.OwnerId == _userId);
+                var entity = ctx.LootSources.SingleOrDefault(s => s.LootSourceId == id && s.OwnerId == _userId);
+                if (entity == default)
+                    return new LootSourceDetail { LootSourceId = -1 };
                 return new LootSourceDetail
                 {
                     LootSourceId = entity.LootSourceId,
@@ -152,6 +154,8 @@ namespace Lootsplosion.Service
                 }
             }
             double weightMultiplier = (n + c + u + r + e + l) / 100;
+            if (weightMultiplier == 0)
+                return new List<double>();
             List<double> rarityWithMultiplier = new List<double> { n, c, u, r, e, l, weightMultiplier };
             return rarityWithMultiplier;
         }

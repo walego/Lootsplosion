@@ -56,7 +56,9 @@ namespace Lootsplosion.Service
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Loot.Single(l => l.LootId == id && l.OwnerId == _userId);
+                var entity = ctx.Loot.SingleOrDefault(l => l.LootId == id && l.OwnerId == _userId);
+                if (entity == default)
+                    return new LootDetail { LootId = -1 };
                 return new LootDetail
                 {
                     LootId = entity.LootId,

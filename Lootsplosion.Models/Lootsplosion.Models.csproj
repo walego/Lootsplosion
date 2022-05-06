@@ -66,6 +66,7 @@
     <Compile Include="Item\ItemEdit.cs" />
     <Compile Include="Item\ItemListItem.cs" />
     <Compile Include="LootPool\LootPoolCreate.cs" />
+    <Compile Include="LootPool\LootPoolCreateFromSource.cs" />
     <Compile Include="LootPool\LootPoolEdit.cs" />
     <Compile Include="LootPool\LootPoolListItem.cs" />
     <Compile Include="LootPull\PulledLootListItem.cs" />

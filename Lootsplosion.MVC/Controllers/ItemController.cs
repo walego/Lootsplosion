@@ -56,6 +56,8 @@ namespace Lootsplosion.MVC.Controllers
         {
             var service = CreateItemService();
             var model = service.GetItemById(id);
+            if (model.ItemId == -1)
+                return HttpNotFound();
 
             return View(model);
         }
@@ -63,6 +65,8 @@ namespace Lootsplosion.MVC.Controllers
         {
             var service = CreateItemService();
             var detail = service.GetItemById(id);
+            if (detail.ItemId == -1)
+                return HttpNotFound();
             var model = new ItemEdit
             {
                 ItemId = detail.ItemId,
@@ -86,10 +90,10 @@ namespace Lootsplosion.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, ItemEdit model)
         {
+            ViewBag.Rarity = _enum.GetRarities();
+            ViewBag.ItemType = _enum.GetItemTypes();
             if (!ModelState.IsValid)
             {
-                ViewBag.Rarity = _enum.GetRarities();
-                ViewBag.ItemType = _enum.GetItemTypes();
                 return View(model);
             }
             if (model.ItemId != id)
@@ -111,6 +115,8 @@ namespace Lootsplosion.MVC.Controllers
         {
             var service = CreateItemService();
             var model = service.GetItemById(id);
+            if (model.ItemId == -1)
+                return HttpNotFound();
 
             return View(model);
         }

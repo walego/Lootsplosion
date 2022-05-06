@@ -76,7 +76,9 @@ namespace Lootsplosion.Service
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Items.Single(i => i.ItemId == id && i.OwnerId == _userId);
+                var entity = ctx.Items.SingleOrDefault(i => i.ItemId == id && i.OwnerId == _userId);
+                if (entity == default)
+                    return new ItemDetail { ItemId = -1 };
                 return new ItemDetail
                 {
                     ItemId = entity.ItemId,
@@ -112,6 +114,8 @@ namespace Lootsplosion.Service
                 entity.WorldDrop = model.WorldDrop;
 
                 var oldLoot = ctx.Loot.Single(l => l.ItemId == model.ItemId && l.OwnerId == _userId);
+                if (oldLoot.LootName == model.ItemName && oldLoot.LootDescription == model.ItemDescription && oldLoot.Rarity == model.Rarity && oldLoot.WorldDrop == model.WorldDrop)
+                    return ctx.SaveChanges() == 1;
                 oldLoot.LootName = model.ItemName;
                 oldLoot.LootDescription = model.ItemDescription;
                 oldLoot.Rarity = model.Rarity;

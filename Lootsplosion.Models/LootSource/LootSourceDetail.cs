@@ -28,7 +28,7 @@ namespace Lootsplosion.Models.LootSource
         [Display(Name = "Legendary %")]
         public double LegendaryWeight { get; set; }
         [Display(Name = "Type")]
-        public LootSourceType SourceType { get; set; }
+        public SourceType SourceType { get; set; }
         public int Pulls { get; set; }
     }
 }

@@ -50,6 +50,8 @@ namespace Lootsplosion.MVC.Controllers
         {
             var service = CreateEnemyService();
             var model = service.GetEnemyById(id);
+            if (model.EnemyId == -1)
+                return HttpNotFound();
 
             return View(model);
         }
@@ -57,6 +59,8 @@ namespace Lootsplosion.MVC.Controllers
         {
             var service = CreateEnemyService();
             var detail = service.GetEnemyById(id);
+            if (detail.EnemyId == -1)
+                return HttpNotFound();
             var model = new EnemyEdit
             {
                 EnemyId = detail.EnemyId,
@@ -102,6 +106,8 @@ namespace Lootsplosion.MVC.Controllers
         {
             var service = CreateEnemyService();
             var model = service.GetEnemyById(id);
+            if (model.EnemyId == -1)
+                return HttpNotFound();
 
             return View(model);
         }

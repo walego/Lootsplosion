@@ -46,6 +46,22 @@ namespace Lootsplosion.Service
                 return query.ToArray();
             }
         }
+        public LootPoolListItem GetPoolById(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.LootPools.SingleOrDefault(p => p.LootPoolId == id && p.OwnerId == _userId);
+                if (entity == default)
+                    return new LootPoolListItem { LootPoolId = -1 };
+                return new LootPoolListItem
+                {
+                    LootPoolId = entity.LootPoolId,
+                    LootSourceId = entity.LootSourceId,
+                    LootId = entity.LootId,
+                    SecretRarity = entity.SecretRarity
+                };
+            }
+        }
         public bool UpdateLootPool(LootPoolEdit model)
         {
             using(var ctx = new ApplicationDbContext())

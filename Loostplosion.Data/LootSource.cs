@@ -30,7 +30,7 @@ namespace Loostplosion.Data
         [Required]
         public double LegendaryWeight { get; set; }
         [Required]
-        public LootSourceType SourceType { get; set; }
+        public SourceType SourceType { get; set; }
         [ForeignKey("Enemy")]
         public int? EnemyId { get; set; }
         public virtual Enemy Enemy { get; set; }

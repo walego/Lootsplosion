@@ -1,4 +1,5 @@
-﻿using Lootsplosion.Models.Loot;
+﻿using Lootsplosion.Common;
+using Lootsplosion.Models.Loot;
 using Lootsplosion.Service;
 using Microsoft.AspNet.Identity;
 using System;
@@ -12,6 +13,7 @@ namespace Lootsplosion.MVC.Controllers
 {
     public class LootController : Controller
     {
+        private readonly EnumCollection _enum = new EnumCollection();
         private LootService CreateItemService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
@@ -27,8 +29,7 @@ namespace Lootsplosion.MVC.Controllers
         }
         public ActionResult Create()
         {
-            var rarities = from Rarity r in Enum.GetValues(typeof(Rarity)) select new { Id = (int)r, Name = r.ToString() };
-            ViewBag.Rarity = new SelectList(rarities, "Id", "Name", "Rarity");
+            ViewBag.Rarity = _enum.GetRarities();
             return View();
         }
         [HttpPost]
