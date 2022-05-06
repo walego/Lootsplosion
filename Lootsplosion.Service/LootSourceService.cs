@@ -83,6 +83,25 @@ namespace Lootsplosion.Service
                 };
             }
         }
+        public bool UpdateSource(LootSourceEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.LootSources.Single(s => s.LootSourceId == model.LootSourceId && s.OwnerId == _userId);
+                entity.SourceName = model.SourceName;
+                entity.SourceDescription = model.SourceDescription;
+                entity.SourceType = model.SourceType;
+                entity.NoLootWeight = model.NoLootWeight;
+                entity.CommonWeight = model.CommonWeight;
+                entity.UncommonWeight = model.UncommonWeight;
+                entity.RareWeight = model.RareWeight;
+                entity.EpicWeight = model.EpicWeight;
+                entity.LegendaryWeight = model.LegendaryWeight;
+                entity.Pulls = model.Pulls;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
         public bool DeleteSource(int id)
         {
             var poolService = new LootPoolService(_userId);

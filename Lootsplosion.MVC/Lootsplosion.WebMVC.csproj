@@ -252,11 +252,15 @@
     <Content Include="Views\Enemy\Details.cshtml" />
     <Content Include="Views\Enemy\Edit.cshtml" />
     <Content Include="Views\Enemy\Delete.cshtml" />
+    <Content Include="Views\LootSource\Index.cshtml" />
+    <Content Include="Views\LootSource\Create.cshtml" />
+    <Content Include="Views\LootSource\Details.cshtml" />
+    <Content Include="Views\LootSource\Delete.cshtml" />
+    <Content Include="Views\LootSource\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\LootPool\" />
-    <Folder Include="Views\LootSource\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

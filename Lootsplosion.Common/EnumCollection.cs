@@ -29,7 +29,7 @@ namespace Lootsplosion.Common
         }
         public SelectList GetLootSourceTypes()
         {
-            var types = from ItemType t in Enum.GetValues(typeof(LootSourceType)) select new { Id = (int)t, Name = t.ToString() };
+            var types = from LootSourceType t in Enum.GetValues(typeof(LootSourceType)) select new { Id = (int)t, Name = t.ToString() };
             var list = new SelectList(types, "Id", "Name", "Type");
             return list;
         }

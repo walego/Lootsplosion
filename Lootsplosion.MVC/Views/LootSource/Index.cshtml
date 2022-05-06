@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Lootsplosion.Models.LootSource.LootSourceListItem>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LootSourceId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SourceName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SourceType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoLootWeight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CommonWeight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UncommonWeight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RareWeight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EpicWeight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LegendaryWeight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pulls)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LootSourceId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SourceName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SourceType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoLootWeight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CommonWeight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UncommonWeight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RareWeight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EpicWeight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LegendaryWeight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pulls)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {  id=item.LootSourceId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.LootSourceId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.LootSourceId })
+        </td>
+    </tr>
+}
+
+</table>

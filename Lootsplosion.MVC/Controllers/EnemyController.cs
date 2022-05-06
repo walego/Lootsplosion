@@ -12,7 +12,6 @@ namespace Lootsplosion.MVC.Controllers
 {
     public class EnemyController : Controller
     {
-        private readonly EnumCollection _enum = new EnumCollection();
         private EnemyService CreateEnemyService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());

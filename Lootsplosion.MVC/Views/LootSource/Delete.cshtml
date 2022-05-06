@@ -1,0 +1,112 @@
+﻿@model Lootsplosion.Models.LootSource.LootSourceDetail
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>LootSourceDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LootSourceId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LootSourceId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SourceName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SourceName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SourceDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SourceDescription)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.SourceType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SourceType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoLootWeight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoLootWeight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CommonWeight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CommonWeight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UncommonWeight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UncommonWeight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RareWeight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RareWeight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EpicWeight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EpicWeight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LegendaryWeight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LegendaryWeight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pulls)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pulls)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
