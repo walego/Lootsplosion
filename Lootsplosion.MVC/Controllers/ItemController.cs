@@ -88,6 +88,8 @@ namespace Lootsplosion.MVC.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.Rarity = _enum.GetRarities();
+                ViewBag.ItemType = _enum.GetItemTypes();
                 return View(model);
             }
             if (model.ItemId != id)

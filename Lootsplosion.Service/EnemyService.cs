@@ -125,10 +125,13 @@ namespace Lootsplosion.Service
                 entity.Skills = model.Skills;
                 entity.WorldPulls = model.WorldPulls;
 
-                var oldSource = ctx.LootSources.First(l => l.EnemyId == model.EnemyId && l.OwnerId == _userId);
-                oldSource.SourceName = $"{model.EnemyName} Main";
-
-                return ctx.SaveChanges() == 2;
+                var oldSource = ctx.LootSources.FirstOrDefault(l => l.EnemyId == model.EnemyId && l.OwnerId == _userId);
+                if (oldSource != default)
+                {
+                    oldSource.SourceName = $"{entity.EnemyName} Main";
+                    return ctx.SaveChanges() == 2;
+                }
+                return ctx.SaveChanges() == 1;
             }
         }
         public bool DeleteEnemy(int id)
