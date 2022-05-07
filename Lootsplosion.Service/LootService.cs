@@ -52,6 +52,21 @@ namespace Lootsplosion.Service
                 return query;
             }
         }
+        public IEnumerable<LootDescription> GetLootDescriptions()
+        {
+            var lootList = GetAllLoot();
+            var descriptions = new List<LootDescription>();
+            foreach (var loot in lootList)
+            {
+                var lootDesc = new LootDescription
+                {
+                    LootId = loot.LootId,
+                    Loot = $"{loot.LootName} {loot.Rarity.ToString().ToUpper()}"
+                };
+                descriptions.Add(lootDesc);
+            }
+            return descriptions;
+        }
         public LootDetail GetLootById(int id)
         {
             using (var ctx = new ApplicationDbContext())

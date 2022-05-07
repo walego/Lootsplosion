@@ -76,6 +76,7 @@
     <Compile Include="LootSource\LootSourceEdit.cs" />
     <Compile Include="LootSource\LootSourceListItem.cs" />
     <Compile Include="Loot\LootCreate.cs" />
+    <Compile Include="Loot\LootDescription.cs" />
     <Compile Include="Loot\LootDetail.cs" />
     <Compile Include="Loot\LootListItem.cs" />
     <Compile Include="Loot\LootEdit.cs" />

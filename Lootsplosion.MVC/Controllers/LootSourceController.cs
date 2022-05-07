@@ -1,4 +1,5 @@
 ﻿using Lootsplosion.Common;
+using Lootsplosion.Models.LootPool;
 using Lootsplosion.Models.LootSource;
 using Lootsplosion.Service;
 using Microsoft.AspNet.Identity;
@@ -18,6 +19,12 @@ namespace Lootsplosion.MVC.Controllers
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
             var service = new LootSourceService(userId);
+            return service;
+        }
+        private LootService CreateLootService()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new LootService(userId);
             return service;
         }
         // GET: Item
@@ -127,12 +134,43 @@ namespace Lootsplosion.MVC.Controllers
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteEnemy(int id)
+        public ActionResult DeleteSource(int id)
         {
             var service = CreateSourceService();
             service.DeleteSource(id);
             TempData["SaveResult"] = "Loot Source Deleted";
             return RedirectToAction("Index");
+        }
+        public ActionResult AddLoot(int id)
+        {
+            ViewBag.AddedLoot = GetLootList();
+            ViewBag.Rarity = _enum.GetRarities();
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddLoot(int id, LootPoolCreateFromSource model)
+        {
+            ViewBag.AddedLoot = GetLootList();
+            ViewBag.Rarity = _enum.GetRarities();
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var service = CreateSourceService();
+            if (service.AddLootToSource(model, id))
+            {
+                TempData["SaveResult"] = "Loot added to Source.";
+                return RedirectToAction("Index");
+            }
+            ModelState.AddModelError("", "Loot was unable to be added");
+            return View(model);
+        }
+        private SelectList GetLootList()
+        {
+            var lootService = CreateLootService();
+            var lootList = lootService.GetLootDescriptions();
+            return new SelectList(lootList, "LootId", "Loot");
         }
     }
 }

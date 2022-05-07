@@ -1,11 +1,13 @@
 ﻿using Loostplosion.Data;
 using Lootsplosion.Data;
+using Lootsplosion.Models.LootPool;
 using Lootsplosion.Models.LootSource;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace Lootsplosion.Service
 {
@@ -121,6 +123,21 @@ namespace Lootsplosion.Service
             {
                 var entity = ctx.LootSources.Single(l => l.LootSourceId == id && l.OwnerId == _userId);
                 ctx.LootSources.Remove(entity);
+                return ctx.SaveChanges() == 1;
+            }
+        }
+        public bool AddLootToSource(LootPoolCreateFromSource model, int sourceId)
+        {
+            var entity = new LootPool()
+            {
+                OwnerId = _userId,
+                LootId = model.LootId,
+                LootSourceId = sourceId,
+                SecretRarity = model.SecretRarity
+            };
+            using (var ctx = new ApplicationDbContext())
+            {
+                ctx.LootPools.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
         }
