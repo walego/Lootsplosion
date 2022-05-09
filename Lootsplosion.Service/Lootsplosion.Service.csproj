@@ -83,6 +83,7 @@
     <Compile Include="LootPoolService.cs" />
     <Compile Include="LootService.cs" />
     <Compile Include="LootSourceService.cs" />
+    <Compile Include="LootsplosionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

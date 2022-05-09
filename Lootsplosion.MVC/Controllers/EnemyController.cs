@@ -12,12 +12,14 @@ namespace Lootsplosion.MVC.Controllers
 {
     public class EnemyController : Controller
     {
+        //Service Methods
         private EnemyService CreateEnemyService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
             var service = new EnemyService(userId);
             return service;
         }
+
         // GET: Item
         public ActionResult Index()
         {
@@ -25,6 +27,9 @@ namespace Lootsplosion.MVC.Controllers
             var model = service.GetEnemies();
             return View(model);
         }
+
+        // CREATE
+
         public ActionResult Create()
         {
             return View();
@@ -46,6 +51,8 @@ namespace Lootsplosion.MVC.Controllers
             ModelState.AddModelError("", "Enemy unable to be created");
             return View(model);
         }
+
+        // DETAILS
         public ActionResult Details(int id)
         {
             var service = CreateEnemyService();
@@ -55,6 +62,8 @@ namespace Lootsplosion.MVC.Controllers
 
             return View(model);
         }
+
+        // EDIT
         public ActionResult Edit(int id)
         {
             var service = CreateEnemyService();
@@ -101,6 +110,8 @@ namespace Lootsplosion.MVC.Controllers
             ModelState.AddModelError("", "Enemy was unable to be updated");
             return View(model);
         }
+
+        // DELETE
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {

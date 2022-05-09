@@ -15,6 +15,8 @@ namespace Lootsplosion.MVC.Controllers
     public class LootSourceController : Controller
     {
         private readonly EnumCollection _enum = new EnumCollection();
+
+        //Service Methods
         private LootSourceService CreateSourceService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
@@ -27,7 +29,7 @@ namespace Lootsplosion.MVC.Controllers
             var service = new LootService(userId);
             return service;
         }
-        // GET: Item
+        // Index/Create/Details/Edit/Delete
         public ActionResult Index()
         {
             var service = CreateSourceService();
@@ -68,12 +70,6 @@ namespace Lootsplosion.MVC.Controllers
             if (model.LootSourceId == -1)
                 return HttpNotFound();
 
-            return View(model);
-        }
-        public ActionResult LootPools(int id)
-        {
-            var service = CreateSourceService();
-            var model = service.GetLootPoolsInSource(id);
             return View(model);
         }
         public ActionResult Edit(int id)
@@ -147,6 +143,15 @@ namespace Lootsplosion.MVC.Controllers
             TempData["SaveResult"] = "Loot Source Deleted";
             return RedirectToAction("Index");
         }
+        //***EXTRA METHODS***//
+        //Details--Gets a list of all loot pools in a loot source
+        public ActionResult LootPools(int id)
+        {
+            var service = CreateSourceService();
+            var model = service.GetLootPoolsInSource(id);
+            return View(model);
+        }
+        //Details--Creates a new loot pool automatically attached to the loot source
         public ActionResult AddLoot(int id)
         {
             ViewBag.LootId = GetLootList();
@@ -170,6 +175,7 @@ namespace Lootsplosion.MVC.Controllers
             ModelState.AddModelError("", "Loot was unable to be added");
             return View(model);
         }
+        // Creates SelectList for Loot Pool Create dropdown menu
         private SelectList GetLootList()
         {
             var lootService = CreateLootService();

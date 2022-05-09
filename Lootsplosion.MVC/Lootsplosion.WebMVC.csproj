@@ -175,6 +175,7 @@
     <Compile Include="Controllers\LootController.cs" />
     <Compile Include="Controllers\LootPoolController.cs" />
     <Compile Include="Controllers\LootSourceController.cs" />
+    <Compile Include="Controllers\LootsplosionController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -267,6 +268,7 @@
     <Content Include="Views\LootPool\Create.cshtml" />
     <Content Include="Views\LootPool\Details.cshtml" />
     <Content Include="Views\LootPool\Edit.cshtml" />
+    <Content Include="Views\Lootsplosion\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

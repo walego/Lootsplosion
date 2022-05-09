@@ -9,8 +9,8 @@ namespace Lootsplosion.Models.LootPull
 {
     public class PulledLootListItem
     {
-        public int ItemId { get; set; }
-        public string ItemName { get; set; }
+        public int LootId { get; set; }
+        public string LootName { get; set; }
         public Rarity Rarity { get; set; }
     }
 }

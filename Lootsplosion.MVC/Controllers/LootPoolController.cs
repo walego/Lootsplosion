@@ -13,6 +13,8 @@ namespace Lootsplosion.MVC.Controllers
     public class LootPoolController : Controller
     {
         private readonly EnumCollection _enum = new EnumCollection();
+
+        // Service Methods
         private LootPoolService CreatePoolService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
@@ -31,6 +33,8 @@ namespace Lootsplosion.MVC.Controllers
             var service = new LootSourceService(userId);
             return service;
         }
+
+        // Index/Create/Details/Edit/Delete
         public ActionResult Index()
         {
             var service = CreatePoolService();
@@ -136,6 +140,8 @@ namespace Lootsplosion.MVC.Controllers
             TempData["SaveResult"] = "";
             return RedirectToAction($"LootPools/{sourceId}","LootSource");
         }
+
+        // Create Selectlist for Loot + LootSource
         private SelectList GetLootList()
         {
             var lootService = CreateLootService();
