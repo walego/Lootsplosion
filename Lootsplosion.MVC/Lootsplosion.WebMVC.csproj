@@ -263,6 +263,10 @@
     <Content Include="Views\Loot\Details.cshtml" />
     <Content Include="Views\Loot\Edit.cshtml" />
     <Content Include="Views\Loot\Delete.cshtml" />
+    <Content Include="Views\LootPool\Index.cshtml" />
+    <Content Include="Views\LootPool\Create.cshtml" />
+    <Content Include="Views\LootPool\Details.cshtml" />
+    <Content Include="Views\LootPool\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

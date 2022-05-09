@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Lootsplosion.Models.LootPool.LootPoolListItem>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LootPoolId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LootId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LootName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LootSourceId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LootSourceName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SecretRarity)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LootPoolId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LootId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LootName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LootSourceId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LootSourceName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SecretRarity)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.LootPoolId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.LootPoolId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.LootPoolId })
+        </td>
+    </tr>
+}
+
+</table>

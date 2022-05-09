@@ -28,6 +28,8 @@ namespace Lootsplosion.Service
             };
             using (var ctx = new ApplicationDbContext())
             {
+                if (!CheckLootAndSource(model.LootId, model.LootSourceId))
+                    return false;
                 ctx.LootPools.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
@@ -71,6 +73,8 @@ namespace Lootsplosion.Service
             using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx.LootPools.Single(p => p.LootPoolId == model.LootPoolId && p.OwnerId == _userId);
+                if (!CheckLootAndSource(model.LootId, model.LootSourceId))
+                    return false;
                 entity.LootId = model.LootId;
                 entity.LootSourceId = model.LootSourceId;
                 entity.SecretRarity = model.SecretRarity;
@@ -86,6 +90,14 @@ namespace Lootsplosion.Service
                 ctx.LootPools.Remove(entity);
                 return ctx.SaveChanges() == 1;
             }
+        }
+        private bool CheckLootAndSource(int lootId, int sourceId)
+        {
+            int lootCheck = new LootService(_userId).GetLootById(lootId).LootId;
+            int sourceCheck = new LootSourceService(_userId).GetSourceById(sourceId).LootSourceId;
+            if (lootCheck == -1 || sourceCheck == -1)
+                return false;
+            return true;
         }
     }
 }
