@@ -1,4 +1,5 @@
 ﻿using Lootsplosion.Common;
+using Lootsplosion.Models.LootPull;
 using Lootsplosion.Service;
 using Microsoft.AspNet.Identity;
 using System;
@@ -47,6 +48,38 @@ namespace Lootsplosion.MVC.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+        public ActionResult LootSource()
+        {
+            ViewBag.SelectedId = GetSourceList();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult LootSource(DropdownId model)
+        {
+            return RedirectToAction("Index");
+        }
+        public ActionResult Enemy()
+        {
+            ViewBag.SelectedId = GetEnemyList();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Enemy(DropdownId model)
+        {
+            return RedirectToAction("Index");
+        }
+        private SelectList GetSourceList()
+        {
+            var sourceService = CreateSourceService();
+            var sourceList = sourceService.GetSources();
+            return new SelectList(sourceList, "LootSourceId", "SourceName");
+        }
+        private SelectList GetEnemyList()
+        {
+            var enemyService = CreateEnemyService();
+            var enemyList = enemyService.GetEnemies();
+            return new SelectList(enemyList, "EnemyId", "EnemyName");
         }
     }
 }

@@ -269,6 +269,8 @@
     <Content Include="Views\LootPool\Details.cshtml" />
     <Content Include="Views\LootPool\Edit.cshtml" />
     <Content Include="Views\Lootsplosion\Index.cshtml" />
+    <Content Include="Views\Lootsplosion\LootSource.cshtml" />
+    <Content Include="Views\Lootsplosion\Enemy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
