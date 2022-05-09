@@ -37,7 +37,7 @@ namespace Lootsplosion.MVC.Controllers
             int sourceId = service.GetPoolById(id).LootSourceId;
             service.DeleteLootPool(id);
             TempData["SaveResult"] = "";
-            return RedirectToAction("LootPools","LootSource", sourceId);
+            return RedirectToAction($"LootPools/{sourceId}","LootSource");
         }
     }
 }

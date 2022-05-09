@@ -1,0 +1,66 @@
+﻿@model Lootsplosion.Models.Loot.LootDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>LootDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LootId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LootId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LootName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LootName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rarity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rarity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LootDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LootDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WorldDrop)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorldDrop)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PoolsIn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PoolsIn)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.LootId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

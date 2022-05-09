@@ -1,0 +1,72 @@
+﻿@model Lootsplosion.Models.Loot.LootDetail
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>LootDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LootId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LootId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LootName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LootName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rarity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rarity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LootDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LootDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WorldDrop)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorldDrop)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PoolsIn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PoolsIn)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

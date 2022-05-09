@@ -153,6 +153,8 @@ namespace Lootsplosion.Service
             };
             using (var ctx = new ApplicationDbContext())
             {
+                if (GetSourceById(sourceId).LootSourceId == -1)
+                    return false;
                 ctx.LootPools.Add(entity);
                 return ctx.SaveChanges() == 1;
             }

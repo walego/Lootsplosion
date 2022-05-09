@@ -149,16 +149,14 @@ namespace Lootsplosion.MVC.Controllers
         }
         public ActionResult AddLoot(int id)
         {
-            ViewBag.AddedLoot = GetLootList();
-            ViewBag.Rarity = _enum.GetRarities();
+            ViewBag.LootId = GetLootList();
+            ViewBag.SecretRarity = _enum.GetRarities();
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddLoot(int id, LootPoolCreateFromSource model)
         {
-            ViewBag.AddedLoot = GetLootList();
-            ViewBag.Rarity = _enum.GetRarities();
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -167,7 +165,7 @@ namespace Lootsplosion.MVC.Controllers
             if (service.AddLootToSource(model, id))
             {
                 TempData["SaveResult"] = "Loot added to Source.";
-                return RedirectToAction("Index");
+                return RedirectToAction($"LootPools/{id}");
             }
             ModelState.AddModelError("", "Loot was unable to be added");
             return View(model);
