@@ -12,7 +12,9 @@ namespace Lootsplosion.Models.LootPool
     {
         public int LootPoolId { get; set; }
         public int LootId { get; set; }
+        public string LootName { get; set; }
         public int LootSourceId { get; set; }
+        public string LootSourceName { get; set; }
         [Display(Name = "Rarity Relative to Loot Source")]
         public Rarity SecretRarity { get; set; }
     }

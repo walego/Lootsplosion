@@ -258,10 +258,11 @@
     <Content Include="Views\LootSource\Delete.cshtml" />
     <Content Include="Views\LootSource\Edit.cshtml" />
     <Content Include="Views\LootSource\AddLoot.cshtml" />
+    <Content Include="Views\LootSource\LootPools.cshtml" />
+    <Content Include="Views\LootPool\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\LootPool\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

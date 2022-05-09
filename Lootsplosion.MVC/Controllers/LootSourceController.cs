@@ -70,6 +70,12 @@ namespace Lootsplosion.MVC.Controllers
 
             return View(model);
         }
+        public ActionResult LootPools(int id)
+        {
+            var service = CreateSourceService();
+            var model = service.GetLootPoolsInSource(id);
+            return View(model);
+        }
         public ActionResult Edit(int id)
         {
             var service = CreateSourceService();

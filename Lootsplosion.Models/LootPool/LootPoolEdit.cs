@@ -16,6 +16,7 @@ namespace Lootsplosion.Models.LootPool
         [Required]
         public int LootSourceId { get; set; }
         [Required]
+        public Rarity CurrentRarity { get; set; }
         public Rarity SecretRarity { get; set; }
     }
 }

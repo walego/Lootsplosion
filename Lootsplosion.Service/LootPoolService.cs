@@ -26,7 +26,7 @@ namespace Lootsplosion.Service
                 LootSourceId = model.LootSourceId,
                 SecretRarity = model.SecretRarity
             };
-            using(var ctx = new ApplicationDbContext())
+            using (var ctx = new ApplicationDbContext())
             {
                 ctx.LootPools.Add(entity);
                 return ctx.SaveChanges() == 1;
@@ -34,13 +34,15 @@ namespace Lootsplosion.Service
         }
         public IEnumerable<LootPoolListItem> GetAllLootPools()
         {
-            using(var ctx = new ApplicationDbContext())
+            using (var ctx = new ApplicationDbContext())
             {
                 var query = ctx.LootPools.Where(p => p.OwnerId == _userId).Select(e => new LootPoolListItem
                 {
                     LootPoolId = e.LootPoolId,
                     LootSourceId = e.LootSourceId,
+                    LootSourceName = e.LootSource.SourceName,
                     LootId = e.LootId,
+                    LootName = e.Loot.LootName,
                     SecretRarity = e.SecretRarity
                 });
                 return query.ToArray();
@@ -57,14 +59,16 @@ namespace Lootsplosion.Service
                 {
                     LootPoolId = entity.LootPoolId,
                     LootSourceId = entity.LootSourceId,
+                    LootSourceName = entity.LootSource.SourceName,
                     LootId = entity.LootId,
+                    LootName = entity.Loot.LootName,
                     SecretRarity = entity.SecretRarity
                 };
             }
         }
         public bool UpdateLootPool(LootPoolEdit model)
         {
-            using(var ctx = new ApplicationDbContext())
+            using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx.LootPools.Single(p => p.LootPoolId == model.LootPoolId && p.OwnerId == _userId);
                 entity.LootId = model.LootId;

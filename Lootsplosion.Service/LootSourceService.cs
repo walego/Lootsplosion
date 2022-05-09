@@ -87,6 +87,22 @@ namespace Lootsplosion.Service
                 };
             }
         }
+        public IEnumerable<LootPoolListItem> GetLootPoolsInSource(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query = ctx.LootPools.Where(p => p.OwnerId == _userId && p.LootSourceId == id).Select(e => new LootPoolListItem
+                {
+                    LootPoolId = e.LootPoolId,
+                    LootSourceId = e.LootSourceId,
+                    LootSourceName = e.LootSource.SourceName,
+                    LootId = e.LootId,
+                    LootName = e.Loot.LootName,
+                    SecretRarity = e.SecretRarity
+                });
+                return query.ToArray();
+            }
+        }
         public bool UpdateSource(LootSourceEdit model)
         {
             using (var ctx = new ApplicationDbContext())
