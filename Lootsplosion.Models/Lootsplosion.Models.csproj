@@ -70,6 +70,7 @@
     <Compile Include="LootPool\LootPoolEdit.cs" />
     <Compile Include="LootPool\LootPoolListItem.cs" />
     <Compile Include="LootPull\DropdownId.cs" />
+    <Compile Include="LootPull\LootPullSetup.cs" />
     <Compile Include="LootPull\PulledLootListItem.cs" />
     <Compile Include="LootSource\LootSourceAddLoot.cs" />
     <Compile Include="LootSource\LootSourceCreate.cs" />

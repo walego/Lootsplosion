@@ -1,6 +1,7 @@
 ﻿using Loostplosion.Data;
 using Lootsplosion.Data;
 using Lootsplosion.Models.LootPool;
+using Lootsplosion.Models.LootPull;
 using Lootsplosion.Models.LootSource;
 using System;
 using System.Collections.Generic;
@@ -159,7 +160,7 @@ namespace Lootsplosion.Service
                 return ctx.SaveChanges() == 1;
             }
         }
-        public List<double> RarityWeightCalculationsForRandom(int id)
+        public LootPullSetup RarityWeightCalculationsForRandom(int id)
         {
             var model = GetSourceById(id);
             bool percentToInt = true;
@@ -189,10 +190,31 @@ namespace Lootsplosion.Service
                 }
             }
             double weightMultiplier = (n + c + u + r + e + l) / 100;
-            if (weightMultiplier == 0)
-                return new List<double>();
-            List<double> rarityWithMultiplier = new List<double> { n, c, u, r, e, l, weightMultiplier };
-            return rarityWithMultiplier;
+            var pullSetup = new LootPullSetup
+            {
+                NoLoot = n,
+                Common = c,
+                Uncommon = u,
+                Rare = r,
+                Epic = e,
+                Legendary = l,
+                WeightMultiplier = weightMultiplier,
+                Pulls = model.Pulls,
+                LootSourceId = id
+            };
+            return pullSetup;
+            /*
+             * List Index
+             * 0-No Loot Chance
+             * 1-Common Loot Chance
+             * 2-Uncommon Loot Chance
+             * 3-Rare Loot Chance
+             * 4-Epic Loot Chance
+             * 5-Legendary Loot Chance
+             * 6-Weight Multiplier (Loot Chance / Multiplier = % Chance for Loot)
+             * 7-Number of pulls from source
+             * 8-Loot Source Id
+             */
         }
     }
 }

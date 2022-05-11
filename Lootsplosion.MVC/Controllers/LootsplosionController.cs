@@ -57,6 +57,12 @@ namespace Lootsplosion.MVC.Controllers
         [HttpPost]
         public ActionResult LootSource(DropdownId model)
         {
+            var sourceService = CreateSourceService();
+            var weightCalc = sourceService.RarityWeightCalculationsForRandom(model.SelectedId);
+            if (weightCalc.WeightMultiplier == 0)
+                ModelState.AddModelError("", "Mathematically unable to pull loot from source");
+            var pullService = CreateLootsplosionService();
+            var loot = pullService.LootPull(weightCalc);
             return RedirectToAction("Index");
         }
         public ActionResult Enemy()
