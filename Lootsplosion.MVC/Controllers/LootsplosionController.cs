@@ -62,8 +62,8 @@ namespace Lootsplosion.MVC.Controllers
             if (weightCalc.WeightMultiplier == 0)
                 ModelState.AddModelError("", "Mathematically unable to pull loot from source");
             var pullService = CreateLootsplosionService();
-            var loot = pullService.LootPull(weightCalc);
-            return RedirectToAction("Index");
+            TempData["loot"] = pullService.LootPull(weightCalc);
+            return RedirectToAction("Pull");
         }
         public ActionResult Enemy()
         {
@@ -71,9 +71,17 @@ namespace Lootsplosion.MVC.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Enemy(DropdownId model)
+        public void Enemy(DropdownId model)
         {
-            return RedirectToAction("Index");
+            var pullService = CreateLootsplosionService();
+            var loot = pullService.PullFromEnemy(model.SelectedId);
+        }
+        public ActionResult Pull()
+        {
+            var model = TempData["loot"];
+            if(model==default)
+                return HttpNotFound();
+            return View(model);
         }
         private SelectList GetSourceList()
         {

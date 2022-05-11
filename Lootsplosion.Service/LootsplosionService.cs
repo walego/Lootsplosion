@@ -43,6 +43,10 @@ namespace Lootsplosion.Service
             }
             return lootList;
         }
+        public List<PulledLootListItem> PullFromEnemy(int enemyId)
+        {
+            return new List<PulledLootListItem>();
+        }
         private PulledLootListItem CommonDrop(int sourceId)
         {
             using (var ctx = new ApplicationDbContext())
