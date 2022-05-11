@@ -2,14 +2,16 @@
     ViewBag.Title = "Index";
 }
 
-<h1>Prepare for a Lootsplosion!</h1>
-
-<hr />
-
-<h4>
-    Please select the source of your Lootsplosion:
-    <br />
-    <a href="@Url.Action("Enemy")"><input type="submit" value="ENEMY" class="btn btn-default" /></a>
-    <br />
-    <a href="@Url.Action("LootSource")"><input type="submit" value="LOOT SOURCE" class="btn btn-default"/></a>
-</h4>
+<div class="row">
+    <h1>Prepare for a Lootsplosion!</h1>
+    <hr />
+</div>
+<div class="row">
+    <h4 class="col-md-12">
+        Please select the source of your Lootsplosion:
+    </h4>
+    </div>
+<div class="row">
+    <a href="@Url.Action("Enemy")" class="btn btn-default">ENEMY <i class="fa fa-skull"></i></a>
+    <a href="@Url.Action("LootSource")" class="btn btn-default">LOOT SOURCE <i class="fa-regular fa-circle-check"></i></a>
+</div>
