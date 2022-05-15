@@ -40,11 +40,18 @@
         <td>
             @Html.DisplayFor(modelItem => item.EnemyName)
         </td>
+
         <td>
-            @Html.DisplayFor(modelItem => item.IsBoss)
+            @if(item.IsBoss==true)
+                {
+                    <i class="fa fa-circle-check"></i>
+                }
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IsElite)
+            @if (item.IsElite == true)
+            {
+                <i class="fa fa-circle-check"></i>
+            }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Level)

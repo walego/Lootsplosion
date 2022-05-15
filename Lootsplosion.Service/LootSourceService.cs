@@ -85,6 +85,8 @@ namespace Lootsplosion.Service
                     EpicWeight = entity.EpicWeight,
                     LegendaryWeight = entity.LegendaryWeight,
                     Pulls = entity.Pulls,
+                    EnemyId = entity.EnemyId,
+                    EnemyName = entity.Enemy.EnemyName
                 };
             }
         }
@@ -203,18 +205,6 @@ namespace Lootsplosion.Service
                 LootSourceId = id
             };
             return pullSetup;
-            /*
-             * List Index
-             * 0-No Loot Chance
-             * 1-Common Loot Chance
-             * 2-Uncommon Loot Chance
-             * 3-Rare Loot Chance
-             * 4-Epic Loot Chance
-             * 5-Legendary Loot Chance
-             * 6-Weight Multiplier (Loot Chance / Multiplier = % Chance for Loot)
-             * 7-Number of pulls from source
-             * 8-Loot Source Id
-             */
         }
     }
 }

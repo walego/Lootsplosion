@@ -30,5 +30,7 @@ namespace Lootsplosion.Models.LootSource
         [Display(Name = "Type")]
         public SourceType SourceType { get; set; }
         public int Pulls { get; set; }
+        public int? EnemyId { get; set; }
+        public string EnemyName { get; set; }
     }
 }

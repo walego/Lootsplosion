@@ -20,18 +20,25 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.LootId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LootName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Rarity)
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        if (item.LootId != 0)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LootId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LootName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rarity)
+                </td>
+            </tr>
+        }
+    }
 
 </table>
+<p>
+    @Html.ActionLink("Again!", "Index")
+</p>

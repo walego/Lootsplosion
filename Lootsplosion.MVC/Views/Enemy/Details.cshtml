@@ -4,27 +4,11 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2 class="text-center">@Html.DisplayFor(model=>model.EnemyName)</h2>
 
 <div>
-    <h4>EnemyDetail</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.EnemyId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EnemyId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EnemyName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EnemyName)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.EnemyDescription)
@@ -39,7 +23,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IsBoss)
+            @if (Model.IsBoss == true)
+            {
+                <i class="fa fa-circle-check"></i>
+            }
+            @if (Model.IsBoss != true)
+            {
+                <i class="fa fa-circle-xmark"></i>
+            }
         </dd>
 
         <dt>
@@ -47,7 +38,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IsElite)
+            @if (Model.IsElite == true)
+            {
+                <i class="fa fa-circle-check"></i>
+            }
+            @if (Model.IsElite != true)
+            {
+                <i class="fa fa-circle-xmark"></i>
+            }
         </dd>
 
         <dt>
@@ -116,7 +114,7 @@
 
     </dl>
 </div>
-<p>
+<p class="text-center">
     @Html.ActionLink("Edit", "Edit", new { id = Model.EnemyId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
