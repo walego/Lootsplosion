@@ -36,7 +36,10 @@
                 @Html.DisplayFor(modelItem => item.LootName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.WorldDrop)
+                @if (item.WorldDrop == true)
+                {
+                    <i class="fa fa-circle-check"></i>
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PoolsIn)

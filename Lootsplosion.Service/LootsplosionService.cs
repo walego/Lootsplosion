@@ -98,6 +98,10 @@ namespace Lootsplosion.Service
             {
                 var poolList = ctx.LootPools.Where(p => p.LootSourceId == sourceId && p.OwnerId == _userId && p.SecretRarity == Rarity.Common).ToList();
                 int listCount = poolList.Count();
+                if (listCount == 0)
+                {
+                    return new PulledLootListItem();
+                }
                 int lootPull = _random.Next(0, listCount);
                 var loot = poolList[lootPull];
                 return new PulledLootListItem
@@ -114,6 +118,10 @@ namespace Lootsplosion.Service
             {
                 var poolList = ctx.LootPools.Where(p => p.LootSourceId == sourceId && p.OwnerId == _userId && p.SecretRarity == Rarity.Uncommon).ToList();
                 int listCount = poolList.Count();
+                if (listCount == 0)
+                {
+                    return new PulledLootListItem();
+                }
                 int lootPull = _random.Next(0, listCount);
                 var loot = poolList[lootPull];
                 return new PulledLootListItem
@@ -130,6 +138,10 @@ namespace Lootsplosion.Service
             {
                 var poolList = ctx.LootPools.Where(p => p.LootSourceId == sourceId && p.OwnerId == _userId && p.SecretRarity == Rarity.Rare).ToList();
                 int listCount = poolList.Count();
+                if (listCount == 0)
+                {
+                    return new PulledLootListItem();
+                }
                 int lootPull = _random.Next(0, listCount);
                 var loot = poolList[lootPull];
                 return new PulledLootListItem
@@ -146,6 +158,10 @@ namespace Lootsplosion.Service
             {
                 var poolList = ctx.LootPools.Where(p => p.LootSourceId == sourceId && p.OwnerId == _userId && p.SecretRarity == Rarity.Epic).ToList();
                 int listCount = poolList.Count();
+                if (listCount == 0)
+                {
+                    return new PulledLootListItem();
+                }
                 int lootPull = _random.Next(0, listCount);
                 var loot = poolList[lootPull];
                 return new PulledLootListItem
@@ -162,6 +178,10 @@ namespace Lootsplosion.Service
             {
                 var poolList = ctx.LootPools.Where(p => p.LootSourceId == sourceId && p.OwnerId == _userId && p.SecretRarity == Rarity.Legendary).ToList();
                 int listCount = poolList.Count();
+                if (listCount == 0)
+                {
+                    return new PulledLootListItem();
+                }
                 int lootPull = _random.Next(0, listCount);
                 var loot = poolList[lootPull];
                 return new PulledLootListItem

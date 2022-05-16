@@ -57,7 +57,7 @@ namespace Lootsplosion.Service
                 ctx.Loot.Add(newLoot);
                 var saved = ctx.SaveChanges();
                 WorldDropCheck();
-                if(model.WorldDrop==true)
+                if (model.WorldDrop == true)
                 {
                     var worldSource = ctx.LootSources.Single(s => s.SourceType == SourceType.World && s.OwnerId == _userId);
                     var addToWorldSource = new LootPool()
@@ -134,14 +134,50 @@ namespace Lootsplosion.Service
                 entity.WorldDrop = model.WorldDrop;
 
                 var oldLoot = ctx.Loot.Single(l => l.ItemId == model.ItemId && l.OwnerId == _userId);
+                bool worldDropCheck = false;
                 if (oldLoot.LootName == model.ItemName && oldLoot.LootDescription == model.ItemDescription && oldLoot.Rarity == model.Rarity && oldLoot.WorldDrop == model.WorldDrop)
                     return ctx.SaveChanges() == 1;
+                if (oldLoot.WorldDrop != model.WorldDrop)
+                {
+                    worldDropCheck = true;
+                    // Gotta add it to world source
+                    var worldSource = ctx.LootSources.Single(s => s.SourceType == SourceType.World && s.OwnerId == _userId);
+                    if (oldLoot.WorldDrop == false)
+                    {
+                        var addToWorldSource = new LootPool()
+                        {
+                            LootId = oldLoot.LootId,
+                            LootSourceId = worldSource.LootSourceId,
+                            SecretRarity = model.Rarity,
+                            OwnerId = _userId,
+                            // CHANGE THIS LATER
+                            MasterList = true
+                            // CHANGE THIS LATER
+                        };
+                        ctx.LootPools.Add(addToWorldSource);
+                    }
+                    // Gotta delete current pool with loot
+                    if (oldLoot.WorldDrop == true)
+                    {
+                        var lootToRemove = ctx.LootPools.SingleOrDefault(p => p.LootId == oldLoot.LootId && p.LootSourceId == worldSource.LootSourceId);
+                        if (lootToRemove == default)
+                        {
+                            worldDropCheck = false;
+                        }
+                        else
+                        {
+                            ctx.LootPools.Remove(lootToRemove);
+                        }
+                    }
+                }
                 oldLoot.LootName = model.ItemName;
                 oldLoot.LootDescription = model.ItemDescription;
                 oldLoot.Rarity = model.Rarity;
                 oldLoot.WorldDrop = model.WorldDrop;
-
-                return ctx.SaveChanges() == 2;
+                var saved = ctx.SaveChanges();
+                if (worldDropCheck)
+                    return saved == 3;
+                return saved == 2;
             }
         }
         public bool DeleteItem(int id)

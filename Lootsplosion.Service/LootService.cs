@@ -111,11 +111,47 @@ namespace Lootsplosion.Service
             using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx.Loot.Single(l => l.LootId == model.LootId && l.OwnerId == _userId);
+                bool worldDropCheck = false;
+                if (entity.WorldDrop != model.WorldDrop)
+                {
+                    worldDropCheck = true;
+                    // Gotta add it to world source
+                    var worldSource = ctx.LootSources.Single(s => s.SourceType == SourceType.World && s.OwnerId == _userId);
+                    if (entity.WorldDrop == false)
+                    {
+                        var addToWorldSource = new LootPool()
+                        {
+                            LootId = entity.LootId,
+                            LootSourceId = worldSource.LootSourceId,
+                            SecretRarity = model.Rarity,
+                            OwnerId = _userId,
+                            // CHANGE THIS LATER
+                            MasterList = true
+                            // CHANGE THIS LATER
+                        };
+                        ctx.LootPools.Add(addToWorldSource);
+                    }
+                    // Gotta delete current pool with loot
+                    if (entity.WorldDrop == true)
+                    {
+                        var lootToRemove = ctx.LootPools.SingleOrDefault(p => p.LootId == entity.LootId && p.LootSourceId == worldSource.LootSourceId);
+                        if (lootToRemove == default)
+                        {
+                            worldDropCheck = false;
+                        }
+                        else
+                        {
+                            ctx.LootPools.Remove(lootToRemove);
+                        }
+                    }
+                }
                 entity.LootName = model.LootName;
                 entity.LootDescription = model.LootDescription;
                 entity.Rarity = model.Rarity;
                 entity.WorldDrop = model.WorldDrop;
 
+                if(worldDropCheck)
+                return ctx.SaveChanges() == 2;
                 return ctx.SaveChanges() == 1;
             }
         }
