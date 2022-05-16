@@ -20,18 +20,6 @@ namespace Lootsplosion.MVC.Controllers
             var service = new LootsplosionService(userId);
             return service;
         }
-        private LootPoolService CreatePoolService()
-        {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var service = new LootPoolService(userId);
-            return service;
-        }
-        private LootService CreateLootService()
-        {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var service = new LootService(userId);
-            return service;
-        }
         private LootSourceService CreateSourceService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
@@ -71,10 +59,11 @@ namespace Lootsplosion.MVC.Controllers
             return View();
         }
         [HttpPost]
-        public void Enemy(DropdownId model)
+        public ActionResult Enemy(DropdownId model)
         {
             var pullService = CreateLootsplosionService();
-            var loot = pullService.PullFromEnemy(model.SelectedId);
+            TempData["loot"] = pullService.PullFromEnemy(model.SelectedId);
+            return RedirectToAction("Pull");
         }
         public ActionResult Pull()
         {

@@ -45,7 +45,52 @@ namespace Lootsplosion.Service
         }
         public List<PulledLootListItem> PullFromEnemy(int enemyId)
         {
-            return new List<PulledLootListItem>();
+            var sourceService = new LootSourceService(_userId);
+            var enemyService = new EnemyService(_userId);
+            var enemy = enemyService.GetEnemyById(enemyId);
+            var lootList = new List<PulledLootListItem>();
+            using (var ctx = new ApplicationDbContext())
+            {
+                if (enemy.WorldPulls != 0)
+                {
+                    var worldSource = ctx.LootSources.SingleOrDefault(s => s.SourceType == SourceType.World && s.OwnerId == _userId);
+                    if (worldSource != default)
+                    {
+                        var worldPullSetup = sourceService.RarityWeightCalculationsForRandom(worldSource.LootSourceId);
+                        worldPullSetup.Pulls = enemy.WorldPulls;
+                        var worldPulls = LootPull(worldPullSetup);
+                        lootList.AddRange(worldPulls);
+                    }
+                }
+                if (enemy.IsBoss)
+                {
+                    var bossSource = ctx.LootSources.SingleOrDefault(s => s.SourceType == SourceType.Boss && s.OwnerId == _userId);
+                    if(bossSource!=default)
+                    {
+                        var bossPullSetup = sourceService.RarityWeightCalculationsForRandom(bossSource.LootSourceId);
+                        var bossPulls = LootPull(bossPullSetup);
+                        lootList.AddRange(bossPulls);
+                    }
+                }
+                if (enemy.IsElite)
+                {
+                    var eliteSource = ctx.LootSources.SingleOrDefault(s => s.SourceType == SourceType.Elite && s.OwnerId == _userId);
+                    if (eliteSource != default)
+                    {
+                        var elitePullSetup = sourceService.RarityWeightCalculationsForRandom(eliteSource.LootSourceId);
+                        var elitePulls = LootPull(elitePullSetup);
+                        lootList.AddRange(elitePulls);
+                    }
+                }
+                var enemySources = ctx.LootSources.Where(s => s.EnemyId == enemyId && s.OwnerId == _userId).ToList();
+                foreach(var source in enemySources)
+                {
+                    var lootPullSetup = sourceService.RarityWeightCalculationsForRandom(source.LootSourceId);
+                    var lootPulls = LootPull(lootPullSetup);
+                    lootList.AddRange(lootPulls);
+                }
+            }
+            return lootList;
         }
         private PulledLootListItem CommonDrop(int sourceId)
         {
