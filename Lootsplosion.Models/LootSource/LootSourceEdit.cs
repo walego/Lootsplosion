@@ -34,9 +34,6 @@ namespace Lootsplosion.Models.LootSource
         [Required]
         [Display(Name = "Legendary Chance")]
         public double LegendaryWeight { get; set; }
-        [Required]
-        [Display(Name = "Type")]
-        public SourceType SourceType { get; set; }
         public int? EnemyId { get; set; }
         [Required]
         [Range(0, 10)]

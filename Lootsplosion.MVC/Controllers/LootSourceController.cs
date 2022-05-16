@@ -89,24 +89,16 @@ namespace Lootsplosion.MVC.Controllers
                 RareWeight = detail.RareWeight,
                 EpicWeight = detail.EpicWeight,
                 LegendaryWeight = detail.LegendaryWeight,
-                SourceType = detail.SourceType,
                 Pulls = detail.Pulls,
             };
-            ViewBag.SourceType = _enum.GetLootSourceTypes();
             return View(model);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, LootSourceEdit model)
         {
-            ViewBag.SourceType = _enum.GetLootSourceTypes();
             if (!ModelState.IsValid)
             {
-                return View(model);
-            }
-            if (model.SourceType == SourceType.World)
-            {
-                ModelState.AddModelError("", "World Loot Source Creation is not available to users");
                 return View(model);
             }
             if (model.LootSourceId != id)

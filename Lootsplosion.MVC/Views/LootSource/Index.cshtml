@@ -77,8 +77,10 @@
             @Html.DisplayFor(modelItem => item.Pulls)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new {  id=item.LootSourceId }) |
+            @Html.ActionLink("Edit", "Edit", new { id = item.LootSourceId }) |
             @Html.ActionLink("Details", "Details", new { id = item.LootSourceId }) |
+            @Html.ActionLink("Add Item", "AddLoot", new { id = item.LootSourceId }) |
+            @Html.ActionLink("See Items", "LootPools", new { id = item.LootSourceId }) |
             @Html.ActionLink("Delete", "Delete", new { id = item.LootSourceId })
         </td>
     </tr>

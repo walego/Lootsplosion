@@ -72,6 +72,7 @@ namespace Lootsplosion.Service
                 var entity = ctx.LootSources.SingleOrDefault(s => s.LootSourceId == id && s.OwnerId == _userId);
                 if (entity == default)
                     return new LootSourceDetail { LootSourceId = -1 };
+                if(entity.EnemyId!=null)
                 return new LootSourceDetail
                 {
                     LootSourceId = entity.LootSourceId,
@@ -87,6 +88,20 @@ namespace Lootsplosion.Service
                     Pulls = entity.Pulls,
                     EnemyId = entity.EnemyId,
                     EnemyName = entity.Enemy.EnemyName
+                };
+                return new LootSourceDetail
+                {
+                    LootSourceId = entity.LootSourceId,
+                    SourceName = entity.SourceName,
+                    SourceDescription = entity.SourceDescription,
+                    SourceType = entity.SourceType,
+                    NoLootWeight = entity.NoLootWeight,
+                    CommonWeight = entity.CommonWeight,
+                    UncommonWeight = entity.UncommonWeight,
+                    RareWeight = entity.RareWeight,
+                    EpicWeight = entity.EpicWeight,
+                    LegendaryWeight = entity.LegendaryWeight,
+                    Pulls = entity.Pulls,
                 };
             }
         }
@@ -113,7 +128,6 @@ namespace Lootsplosion.Service
                 var entity = ctx.LootSources.Single(s => s.LootSourceId == model.LootSourceId && s.OwnerId == _userId);
                 entity.SourceName = model.SourceName;
                 entity.SourceDescription = model.SourceDescription;
-                entity.SourceType = model.SourceType;
                 entity.NoLootWeight = model.NoLootWeight;
                 entity.CommonWeight = model.CommonWeight;
                 entity.UncommonWeight = model.UncommonWeight;

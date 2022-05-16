@@ -39,7 +39,10 @@
                 @Html.DisplayFor(modelItem => item.Rarity)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.WorldDrop)
+                @if (item.WorldDrop == true)
+                {
+                    <i class="fa fa-circle-check"></i>
+                }
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.ItemId }) |
