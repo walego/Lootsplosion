@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Lootsplosion.Common.EnumCollection;
 
 namespace Lootsplosion.Service
 {
@@ -54,7 +55,26 @@ namespace Lootsplosion.Service
                     // CHANGE THIS LATER
                 };
                 ctx.Loot.Add(newLoot);
-                return ctx.SaveChanges() == 1;
+                var saved = ctx.SaveChanges();
+                WorldDropCheck();
+                if(model.WorldDrop==true)
+                {
+                    var worldSource = ctx.LootSources.Single(s => s.SourceType == SourceType.World && s.OwnerId == _userId);
+                    var addToWorldSource = new LootPool()
+                    {
+                        LootId = newLoot.LootId,
+                        LootSourceId = worldSource.LootSourceId,
+                        SecretRarity = model.Rarity,
+                        OwnerId = _userId,
+                        // CHANGE THIS LATER
+                        MasterList = true
+                        // CHANGE THIS LATER
+                    };
+                    ctx.LootPools.Add(addToWorldSource);
+                    saved += ctx.SaveChanges();
+                    return saved == 2;
+                }
+                return saved == 1;
             }
         }
         public IEnumerable<ItemListItem> GetItems()
@@ -130,18 +150,46 @@ namespace Lootsplosion.Service
             using (var lootCtx = new ApplicationDbContext())
             {
                 var lootList = lootCtx.Loot.Where(l => l.ItemId == id).ToList();
-                foreach(Loot loot in lootList)
+                foreach (Loot loot in lootList)
                 {
                     bool deleteCheck = lootService.DeleteLoot(loot.LootId);
                     if (!deleteCheck)
                         return false;
                 }
             }
-            using(var ctx = new ApplicationDbContext())
+            using (var ctx = new ApplicationDbContext())
             {
                 var entity = ctx.Items.Single(i => i.ItemId == id && i.OwnerId == _userId);
                 ctx.Items.Remove(entity);
-                return ctx.SaveChanges()==1;
+                return ctx.SaveChanges() == 1;
+            }
+        }
+        public void WorldDropCheck()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var worldCheck = ctx.LootSources.SingleOrDefault(s => s.SourceType == SourceType.World && s.OwnerId == _userId);
+                if (worldCheck == default)
+                {
+                    var newSource = new LootSource()
+                    {
+                        OwnerId = _userId,
+                        SourceName = $"World Drop",
+                        SourceType = SourceType.World,
+                        NoLootWeight = 25,
+                        CommonWeight = 35,
+                        UncommonWeight = 24,
+                        RareWeight = 10,
+                        EpicWeight = 5,
+                        LegendaryWeight = 1,
+                        Pulls = 0,
+                        // CHANGE THIS LATER
+                        MasterList = true
+                        // CHANGE THIS LATER
+                    };
+                    ctx.LootSources.Add(newSource);
+                    ctx.SaveChanges();
+                }
             }
         }
     }

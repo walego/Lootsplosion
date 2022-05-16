@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Lootsplosion.Common.EnumCollection;
 
 namespace Lootsplosion.Service
 {
@@ -33,7 +34,27 @@ namespace Lootsplosion.Service
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Loot.Add(entity);
-                return ctx.SaveChanges() == 1;
+                var saved = ctx.SaveChanges();
+                var itemService = new ItemService(_userId);
+                itemService.WorldDropCheck();
+                if (model.WorldDrop == true)
+                {
+                    var worldSource = ctx.LootSources.Single(s => s.SourceType == SourceType.World && s.OwnerId == _userId);
+                    var addToWorldSource = new LootPool()
+                    {
+                        LootId = entity.LootId,
+                        LootSourceId = worldSource.LootSourceId,
+                        SecretRarity = model.Rarity,
+                        OwnerId = _userId,
+                        // CHANGE THIS LATER
+                        MasterList = true
+                        // CHANGE THIS LATER
+                    };
+                    ctx.LootPools.Add(addToWorldSource);
+                    saved += ctx.SaveChanges();
+                    return saved == 2;
+                }
+                return saved == 1;
             }
         }
         public IEnumerable<LootListItem> GetAllLoot()

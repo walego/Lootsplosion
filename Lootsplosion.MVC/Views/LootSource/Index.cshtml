@@ -44,46 +44,52 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.LootSourceId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SourceName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SourceType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NoLootWeight)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CommonWeight)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UncommonWeight)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RareWeight)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EpicWeight)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LegendaryWeight)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pulls)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.LootSourceId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.LootSourceId }) |
-            @Html.ActionLink("Add Item", "AddLoot", new { id = item.LootSourceId }) |
-            @Html.ActionLink("See Items", "LootPools", new { id = item.LootSourceId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.LootSourceId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LootSourceId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SourceName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SourceType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoLootWeight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CommonWeight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UncommonWeight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RareWeight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EpicWeight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LegendaryWeight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pulls)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.LootSourceId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.LootSourceId }) |
+                @Html.ActionLink("See Items", "LootPools", new { id = item.LootSourceId })
+                @if (item.SourceType != Lootsplosion.Common.EnumCollection.SourceType.World)
+                {
+                    <text> | </text>
+                    @Html.ActionLink("Add Item", "AddLoot", new { id = item.LootSourceId })
+                    <text> | </text>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.LootSourceId });
+                }
+            </td>
+        </tr>
+    }
 
 </table>

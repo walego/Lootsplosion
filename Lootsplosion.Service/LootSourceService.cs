@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using static Lootsplosion.Common.EnumCollection;
 
 namespace Lootsplosion.Service
 {
@@ -116,9 +117,18 @@ namespace Lootsplosion.Service
                     LootSourceName = e.LootSource.SourceName,
                     LootId = e.LootId,
                     LootName = e.Loot.LootName,
-                    SecretRarity = e.SecretRarity
-                });
-                return query.ToArray();
+                    SecretRarity = e.SecretRarity,
+                    WorldDrop = false
+                }).ToArray();
+                var source = GetSourceById(id);
+                if(source.SourceType==SourceType.World)
+                {
+                    foreach(var pool in query)
+                    {
+                        pool.WorldDrop = true;
+                    }
+                }
+                return query;
             }
         }
         public bool UpdateSource(LootSourceEdit model)

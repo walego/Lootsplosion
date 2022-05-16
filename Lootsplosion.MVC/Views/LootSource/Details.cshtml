@@ -120,7 +120,11 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.LootSourceId }) |
-    @Html.ActionLink("Add Item", "AddLoot", new { id = Model.LootSourceId }) |
+    @if (Model.SourceType != Lootsplosion.Common.EnumCollection.SourceType.World)
+    {
+        @Html.ActionLink("Add Item", "AddLoot", new { id = Model.LootSourceId })
+        <text> | </text>
+    }
     @Html.ActionLink("See Items", "LootPools", new { id = Model.LootSourceId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

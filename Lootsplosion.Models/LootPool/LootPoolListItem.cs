@@ -22,5 +22,6 @@ namespace Lootsplosion.Models.LootPool
         public string LootSourceName { get; set; }
         [Display(Name = "Rarity Relative to Loot Source")]
         public Rarity SecretRarity { get; set; }
+        public bool WorldDrop { get; set; }
     }
 }

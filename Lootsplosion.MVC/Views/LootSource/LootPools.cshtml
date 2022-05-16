@@ -50,9 +50,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.SecretRarity)
             </td>
-            <td>
-                @Html.ActionLink("Remove from Source", "Delete", "LootPool", new { id = item.LootPoolId }, null)
-            </td>
+            @if (!item.WorldDrop)
+            {
+                <td>
+                    @Html.ActionLink("Remove from Source", "Delete", "LootPool", new { id = item.LootPoolId }, null)
+                </td>
+            }
         </tr>
     }
 

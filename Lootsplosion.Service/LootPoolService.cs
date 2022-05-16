@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Lootsplosion.Common.EnumCollection;
 
 namespace Lootsplosion.Service
 {
@@ -45,9 +46,18 @@ namespace Lootsplosion.Service
                     LootSourceName = e.LootSource.SourceName,
                     LootId = e.LootId,
                     LootName = e.Loot.LootName,
-                    SecretRarity = e.SecretRarity
-                });
-                return query.ToArray();
+                    SecretRarity = e.SecretRarity,
+                    WorldDrop = false
+                }).ToArray();
+                foreach(var pool in query)
+                {
+                    var source = ctx.LootSources.Single(p => p.LootSourceId == pool.LootSourceId);
+                    if(source.SourceType==SourceType.World)
+                    {
+                        pool.WorldDrop = true;
+                    }
+                }
+                return query;
             }
         }
         public LootPoolListItem GetPoolById(int id)
