@@ -36,9 +36,6 @@ namespace Lootsplosion.Service
                 EpicWeight = model.EpicWeight,
                 LegendaryWeight = model.LegendaryWeight,
                 Pulls = model.Pulls,
-                // CHANGE THIS LATER
-                MasterList = true
-                // CHANGE THIS LATER
             };
             using (var ctx = new ApplicationDbContext())
             {

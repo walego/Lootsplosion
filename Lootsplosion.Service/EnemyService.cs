@@ -36,9 +36,6 @@ namespace Lootsplosion.Service
                 CritChance = model.CritChance,
                 Skills = model.Skills,
                 WorldPulls = model.WorldPulls,
-                // CHANGE THIS LATER
-                MasterList = true
-                // CHANGE THIS LATER
             };
             using (var ctx = new ApplicationDbContext())
             {
@@ -59,9 +56,6 @@ namespace Lootsplosion.Service
                     EpicWeight = 5,
                     LegendaryWeight = 1,
                     Pulls = 0,
-                    // CHANGE THIS LATER
-                    MasterList = true
-                    // CHANGE THIS LATER
                 };
                 ctx.LootSources.Add(newSource);
                 saved += ctx.SaveChanges();

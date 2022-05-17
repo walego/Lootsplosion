@@ -34,9 +34,6 @@ namespace Lootsplosion.Service
                 CritChance = model.CritChance,
                 OtherEffects = model.OtherEffects,
                 WorldDrop = model.WorldDrop,
-                // CHANGE THIS LATER
-                MasterList = true
-                // CHANGE THIS LATER
             };
             using (var ctx = new ApplicationDbContext())
             {
@@ -50,9 +47,6 @@ namespace Lootsplosion.Service
                     LootDescription = model.ItemDescription,
                     Rarity = model.Rarity,
                     WorldDrop = model.WorldDrop,
-                    // CHANGE THIS LATER
-                    MasterList = true
-                    // CHANGE THIS LATER
                 };
                 ctx.Loot.Add(newLoot);
                 var saved = ctx.SaveChanges();
@@ -66,9 +60,6 @@ namespace Lootsplosion.Service
                         LootSourceId = worldSource.LootSourceId,
                         SecretRarity = model.Rarity,
                         OwnerId = _userId,
-                        // CHANGE THIS LATER
-                        MasterList = true
-                        // CHANGE THIS LATER
                     };
                     ctx.LootPools.Add(addToWorldSource);
                     saved += ctx.SaveChanges();
@@ -219,9 +210,6 @@ namespace Lootsplosion.Service
                         EpicWeight = 5,
                         LegendaryWeight = 1,
                         Pulls = 0,
-                        // CHANGE THIS LATER
-                        MasterList = true
-                        // CHANGE THIS LATER
                     };
                     ctx.LootSources.Add(newSource);
                     ctx.SaveChanges();
