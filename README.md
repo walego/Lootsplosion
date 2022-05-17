@@ -2,6 +2,8 @@
 
 This  MVC allows a user to create Items, Loot, Enemies, Loot Sources, and Loot Pools
 
+You can use the deployed project here: https://lootsplosionmvc.azurewebsites.net/
+
 ## Items
 
 Items are not a necessary table for the functionality to work, but they help the user experience.
