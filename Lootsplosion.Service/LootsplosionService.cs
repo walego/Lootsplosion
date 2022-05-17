@@ -29,15 +29,15 @@ namespace Lootsplosion.Service
                 var loot = new PulledLootListItem();
                 int totalRandom = (int)(setup.NoLoot + setup.Common + setup.Uncommon + setup.Rare + setup.Epic + setup.Legendary);
                 int pullNumber = _random.Next(0, totalRandom);
-                if (setup.NoLoot < pullNumber && pullNumber < setup.NoLoot + setup.Common)
+                if (setup.NoLoot <= pullNumber && pullNumber < setup.NoLoot + setup.Common)
                     loot = CommonDrop(setup.LootSourceId);
-                else if (setup.NoLoot < pullNumber && pullNumber < setup.NoLoot + setup.Common + setup.Uncommon)
+                else if (setup.NoLoot <= pullNumber && pullNumber < setup.NoLoot + setup.Common + setup.Uncommon)
                     loot = UncommonDrop(setup.LootSourceId);
-                else if (setup.NoLoot < pullNumber && pullNumber < setup.NoLoot + setup.Common + setup.Uncommon + setup.Rare)
+                else if (setup.NoLoot <= pullNumber && pullNumber < setup.NoLoot + setup.Common + setup.Uncommon + setup.Rare)
                     loot = RareDrop(setup.LootSourceId);
-                else if (setup.NoLoot < pullNumber && pullNumber < setup.NoLoot + setup.Common + setup.Uncommon + setup.Rare + setup.Epic)
+                else if (setup.NoLoot <= pullNumber && pullNumber < setup.NoLoot + setup.Common + setup.Uncommon + setup.Rare + setup.Epic)
                     loot = EpicDrop(setup.LootSourceId);
-                else if (setup.NoLoot < pullNumber && pullNumber < setup.NoLoot + setup.Common + setup.Uncommon + setup.Rare + setup.Epic + setup.Legendary)
+                else if (setup.NoLoot <= pullNumber && pullNumber < setup.NoLoot + setup.Common + setup.Uncommon + setup.Rare + setup.Epic + setup.Legendary)
                     loot = LegendaryDrop(setup.LootSourceId);
                 lootList.Add(loot);
             }
