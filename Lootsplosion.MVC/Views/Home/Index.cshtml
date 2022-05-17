@@ -9,25 +9,21 @@
 </div>
 
 <div class="row">
-    <h2 class="text-center">How does it work?</h2>
-    <p class="col-xs-12">Magic</p>
-</div>
-<div class="row">
     <div class="col-md-4">
         <h2>Items</h2>
         <p>
-            Items
+            Items can be created and given stats like Strength, Intelligence, Vitality, and more. When an item is created, a piece of <a href="@Url.Action("Index","Loot")">Loot</a> using all the key item information is also created in the database.
         </p>
         <p><a class="btn btn-default" href="@Url.Action("Index", "Item")">Items &raquo;</a></p>
     </div>
     <div class="col-md-4">
-        <h2>Enemies</h2>
-        <p>Enemies</p>
-        <p><a class="btn btn-default" href="@Url.Action("Index", "Enemy")">Enemies &raquo;</a></p>
+        <h2>Loot Sources</h2>
+        <p>Loot Sources can be customized to have different rarity weights relative to the loot assigned to it. You can then assign items to sources and then <a href="@Url.Action("Index","Lootsplosion")">Lootsplode!</a> using that Loot Source</p>
+        <p><a class="btn btn-default" href="@Url.Action("Index", "LootSource")">Loot Sources &raquo;</a></p>
     </div>
     <div class="col-md-4">
-        <h2>Loot Sources</h2>
-        <p>Loot Sources</p>
-        <p><a class="btn btn-default" href="@Url.Action("Index", "LootSource")">Loot Sources &raquo;</a></p>
+        <h3>Don't like the Item Stats?</h3>
+        <p>If you want to streamline the process of loot creation, or just don't like the stats items can be assigned, you can use the loot page to directly create loot without having to make an item</p>
+        <p><a class="btn btn-default" href="@Url.Action("Index", "Loot")">Loot &raquo;</a></p>
     </div>
 </div>
