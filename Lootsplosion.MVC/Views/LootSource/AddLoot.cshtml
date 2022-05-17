@@ -4,14 +4,13 @@
     ViewBag.Title = "AddLoot";
 }
 
-<h2>AddLoot</h2>
+<h2>Add Loot to Source</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>LootPoolCreateFromSource</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">

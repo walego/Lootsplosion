@@ -4,41 +4,23 @@
     ViewBag.Title = "Pull";
 }
 
-<h2>Pull</h2>
+<h1>You recieved:</h1>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.LootId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LootName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Rarity)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
+@foreach (var item in Model)
+{
+    if (item.LootId != 0)
     {
-        if (item.LootId != 0)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LootId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LootName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Rarity)
-                </td>
-            </tr>
-        }
+        <div class="row">
+            <h4 class="col-sm-2 col-xs-4">
+                @Html.DisplayFor(modelItem => item.Rarity).ToString().ToUpper()
+            </h4>
+            <h4 class="col-sm-10 col-xs-8">
+                @Html.DisplayFor(modelItem => item.LootName)
+            </h4>
+        </div>
     }
-
-</table>
-<p>
+}
+<br />
+<h4>
     @Html.ActionLink("Again!", "Index")
-</p>
+</h4>
