@@ -42,10 +42,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.WorldDrop, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.WorldDrop)
-                    @Html.ValidationMessageFor(model => model.WorldDrop, "", new { @class = "text-danger" })
-                </div>
+                @Html.EditorFor(model => model.WorldDrop)
+                @Html.ValidationMessageFor(model => model.WorldDrop, "", new { @class = "text-danger" })
             </div>
         </div>
 

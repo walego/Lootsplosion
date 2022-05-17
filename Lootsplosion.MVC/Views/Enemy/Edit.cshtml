@@ -9,7 +9,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>EnemyEdit</h4>
         <hr />
@@ -35,20 +35,16 @@
         <div class="form-group">
             @Html.LabelFor(model => model.IsBoss, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsBoss)
-                    @Html.ValidationMessageFor(model => model.IsBoss, "", new { @class = "text-danger" })
-                </div>
+                @Html.EditorFor(model => model.IsBoss)
+                @Html.ValidationMessageFor(model => model.IsBoss, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.IsElite, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsElite)
-                    @Html.ValidationMessageFor(model => model.IsElite, "", new { @class = "text-danger" })
-                </div>
+                @Html.EditorFor(model => model.IsElite)
+                @Html.ValidationMessageFor(model => model.IsElite, "", new { @class = "text-danger" })
             </div>
         </div>
 
