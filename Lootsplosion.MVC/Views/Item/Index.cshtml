@@ -9,53 +9,30 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ItemId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ItemName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Rarity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ItemType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WorldDrop)
-        </th>
-        <th></th>
-    </tr>
-
+<div class="row">
     @foreach (var item in Model)
     {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.ItemId)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.ItemName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Rarity)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.ItemType)
-    </td>
-    <td>
-        @if (item.WorldDrop == true)
-        {
-            <i class="fa fa-circle-check"></i>
-        }
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.ItemId }) |
-        @Html.ActionLink("Details", "Details", new { id = item.ItemId }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.ItemId })
-    </td>
-</tr>
+        <div class="col-lg-4 col-sm-6" style="padding: 5px 10px 5px 10px; outline:2px solid white; outline-offset:-3px;">
+            <h4 class="text-center">
+                <a href="@Url.Action("Details", new {id = item.ItemId})" style="color:white">
+                @Html.DisplayFor(modelItem => item.ItemName)
+                </a>
+                @if (item.WorldDrop == true)
+                {
+                    <i class="fa fa-globe pull-right"></i>
+                }
+            </h4>
+            <div class="pull-left">
+                @Html.DisplayFor(modelItem => item.Rarity)
+                @Html.DisplayFor(modelItem => item.ItemType)
+            </div>
+            <div class="text-right">
+                @Html.ActionLink("Edit", "Edit", new { id = item.ItemId }, htmlAttributes:new {@style="color: white"}) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ItemId }, htmlAttributes: new { @style = "color: white" })
+            </div>
+        </div>
     }
-
-</table>
+    <br />
+</div>
+<br />
+<p><i class="fa fa-globe"></i> - World Drop</p>
