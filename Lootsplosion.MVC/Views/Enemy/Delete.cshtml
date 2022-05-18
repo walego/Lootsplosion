@@ -40,7 +40,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IsBoss)
+            @if (Model.IsBoss == true)
+            {
+                <i class="fa fa-circle-check"></i>
+            }
+            @if (Model.IsBoss != true)
+            {
+                <i class="fa fa-circle-xmark"></i>
+            }
         </dd>
 
         <dt>
@@ -48,7 +55,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IsElite)
+            @if (Model.IsElite == true)
+            {
+                <i class="fa fa-circle-check"></i>
+            }
+            @if (Model.IsElite != true)
+            {
+                <i class="fa fa-circle-xmark"></i>
+            }
         </dd>
 
         <dt>

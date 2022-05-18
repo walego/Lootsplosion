@@ -47,7 +47,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.WorldDrop)
+            @if (Model.WorldDrop == true)
+            {
+                <i class="fa fa-circle-check"></i>
+            }
+            @if (Model.WorldDrop != true)
+            {
+                <i class="fa fa-circle-xmark"></i>
+            }
         </dd>
 
         <dt>

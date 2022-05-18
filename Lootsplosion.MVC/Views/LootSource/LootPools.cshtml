@@ -4,24 +4,15 @@
     ViewBag.Title = "LootPools";
 }
 
-<h2>Loot Pools</h2>
+<h2>Loot List for @Html.DisplayFor(model=>model.First().LootSourceName)</h2>
 
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.LootPoolId)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.LootId)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.LootName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LootSourceId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LootSourceName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.SecretRarity)
@@ -33,19 +24,10 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.LootPoolId)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.LootId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.LootName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LootSourceId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LootSourceName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.SecretRarity)
